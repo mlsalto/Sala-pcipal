@@ -1,44 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+
 
 public class EfectoAgua : MonoBehaviour
 {
-    public float waterHeight;
 
-    private bool isUnderwater;
-    private Color normalColor;
-    private Color underwaterColor;
+    public float fps = 30.0f;         //footage fps
+    public Texture2D[] frames;      //caustics images
 
-    // Use this for initialization
+    private int frameIndex;
+    private DecalProjector projector;    //Projector GameObject
+
     void Start()
     {
-        //normalColor = new Color(0.5f, 0.5f, 0.5f, 0.5f);
-        underwaterColor = new Color(0.22f, 0.65f, 0.77f, 0.5f);
+        projector = GetComponent<DecalProjector>();
+        NextFrame();
+        InvokeRepeating("NextFrame", 1 / fps, 1 / fps);
     }
 
-    // Update is called once per frame
-    void Update()
+    void NextFrame()
     {
-        SetUnderwater();
-        //if ((transform.position.y < waterHeight) != isUnderwater)
-        //{
-        //    isUnderwater = transform.position.y < waterHeight;
-        //    if (isUnderwater) SetUnderwater();
-        //    if (!isUnderwater) SetNormal();
-        //}
+        projector.material.SetTexture("_DecalTex", frames[frameIndex]);
+        frameIndex = (frameIndex + 1) % frames.Length;
     }
 
-    void SetNormal()
-    {
-        RenderSettings.fogColor = normalColor;
-        RenderSettings.fogDensity = 0.01f;
+    //private DecalProjector _decalProjector;
 
-    }
+    //void Awake()
+    //{
+    //    _decalProjector = GetComponent<DecalProjector>();
+    //}
 
-    void SetUnderwater()
-    {
-        RenderSettings.fogColor = underwaterColor;
-        RenderSettings.fogDensity = 0.1f;
-    }
+    //void LateUpdate()
+    //{
+    //    _decalProjector.material.SetTexture
+    //}
 }
