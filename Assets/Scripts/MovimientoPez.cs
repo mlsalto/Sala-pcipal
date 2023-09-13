@@ -5,9 +5,12 @@ using UnityEngine;
 public class MovimientoPez : MonoBehaviour
 {
     public GameObject Pez;
-    public float speed = 2;
-    public float radius = 0.3f;
-    public float x, y;
+    private float speed = 0.5f; // radianes/segundo
+    private float radiusx = 5f;
+    private float radiusz = 1.2f;
+    public float x = 7.5f; // centro de rotacion x
+    public float z = 1f; // centro de rotacion z
+
     public float angle;
 
     // Start is called before the first frame update
@@ -19,7 +22,12 @@ public class MovimientoPez : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        angle += (speed / (radius * Mathf.PI * 2.0f)) * Time.deltaTime;
-        Pez.transform.position = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * radius;
+        //angle += (speed/(Mathf.PI*2*radius)) * Time.deltaTime;
+        //Pez.transform.position = new Vector3(-Mathf.Sin(angle) * radius, 0, Mathf.Cos(angle)) * radius * speed;
+        // Pez.transform.Rotate(0.0f, angle, 0.0f, Space.Self);
+        
+        angle += speed * Time.deltaTime;
+        Pez.transform.position = new Vector3( x + (Mathf.Sin(angle) * radiusx), 0, -z + (Mathf.Cos(angle) * radiusz));
+        Pez.transform.forward = Pez.transform.position + new Vector3(2, 0, 2);
     }
 }
