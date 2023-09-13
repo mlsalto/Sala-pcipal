@@ -485,6 +485,11 @@ Transform:
   m_Father: {fileID: 30349988}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &560438209 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7511180232019162148, guid: 818c5a1ba0d9810439f11299463f2294, type: 3}
+  m_PrefabInstance: {fileID: 2120633191}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &683558767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1338,8 +1343,6 @@ MonoBehaviour:
   speed: 0.5
   radiusx: 5
   radiusz: 1.2
-  x: 0
-  z: 1
 --- !u!1 &1781409707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1425,7 +1428,7 @@ MonoBehaviour:
   m_ScaleMode: 1
   m_Offset: {x: 0, y: 0, z: 5}
   m_Size: {x: 19, y: 19, z: 10}
-  m_FadeFactor: 0.52
+  m_FadeFactor: 0.295
 --- !u!1 &1815417706
 GameObject:
   m_ObjectHideFlags: 0
@@ -1813,15 +1816,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8648425310868573238, guid: 818c5a1ba0d9810439f11299463f2294, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.391514
+      value: 8.66
       objectReference: {fileID: 0}
     - target: {fileID: 8648425310868573238, guid: 818c5a1ba0d9810439f11299463f2294, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.482
+      value: 1.19
       objectReference: {fileID: 0}
     - target: {fileID: 8648425310868573238, guid: 818c5a1ba0d9810439f11299463f2294, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.62
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 8648425310868573238, guid: 818c5a1ba0d9810439f11299463f2294, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1862,6 +1865,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8648425310868573238, guid: 818c5a1ba0d9810439f11299463f2294, type: 3}
   m_PrefabInstance: {fileID: 2120633191}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2120633193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560438209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e30c36d9156dd24e89a590c4014b5b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pez: {fileID: 560438209}
+  hspeed: 0.5
+  vspeed: 3
+  radiusx: 5
+  radiusz: 1.2
+  height: 1
 --- !u!1 &2146213296
 GameObject:
   m_ObjectHideFlags: 0
