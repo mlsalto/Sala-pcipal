@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovimientoPez : MonoBehaviour
+public class MovimientoPezCirc : MonoBehaviour
 {
     public GameObject Pez;
-    private float speed = 0.5f; // radianes/segundo
-    private float radiusx = 5f;
-    private float radiusz = 1.2f;
+    public float speed = 0.5f; // radianes/segundo
+    public float radiusx = 5f;
+    public float radiusz = 1.2f;
     public float x = 7.5f; // centro de rotacion x
     public float z = 1f; // centro de rotacion z
 
-    public float angle;
+    private float angle;
 
     // Start is called before the first frame update
     void Start()
