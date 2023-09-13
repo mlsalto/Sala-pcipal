@@ -28,6 +28,6 @@ public class MovimientoPez : MonoBehaviour
         
         angle += speed * Time.deltaTime;
         Pez.transform.position = new Vector3( x + (Mathf.Sin(angle) * radiusx), 0, -z + (Mathf.Cos(angle) * radiusz));
-        Pez.transform.forward = Pez.transform.position + new Vector3(2, 0, 2);
+        Pez.transform.forward = new Vector3(x + (Mathf.Sin(angle - 30 ) * radiusx), 0, -z + (Mathf.Cos(angle - 30) * radiusz));
     }
 }
