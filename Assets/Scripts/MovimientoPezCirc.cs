@@ -13,29 +13,28 @@ public class MovimientoPezCirc : MonoBehaviour
     private float x; // centro de rotacion x
     private float y; // centro de rotacion y
     private float z; // centro de rotacion z
-    private float xrot; // centro de rotacion x
-    private float yrot; // centro de rotacion y
-    private float zrot; // centro de rotacion z
 
+    //private float xrot; // centro de rotacion x
+    //private float yrot; // centro de rotacion y
+    //private float zrot; // centro de rotacion z
 
     private float angle;
-
-    /// Pruebas Grabbable object
-    //public UxrGrabbableObject Pesesito;
-    //public class UxrManipulationEventArgs pesesito
-    //public class UxrManipulationEventArgs : EventArgs
-    //UxrManipulationEventArgs() pesesito;
-    //public event EventHandler<UxrManipulationEventArgs> Releasing;
     public UxrGrabbableObject pesesito;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
-       // var pesesito = new UxrManipulationEventArgs();
+        animator = GetComponent<Animator>(); // se supone que obtiene el objeto en el que está
+        // var pesesito = new UxrManipulationEventArgs();
 
         x = Pez.transform.position.x;
         y = Pez.transform.position.y;
         z = Pez.transform.position.z;
+
+        // poner ángulo random //problema me lo hace con el banco de peces tmb????
+        System.Random random = new System.Random();
+        angle = (float)random.NextDouble();
     }
 
     // Update is called once per frame
@@ -52,9 +51,8 @@ public class MovimientoPezCirc : MonoBehaviour
             y = Pez.transform.position.y;
             z = Pez.transform.position.z;
 
-            //xrot = Pez.transform.rotation.x;
-            //yrot = Pez.transform.rotation.y;
-            //zrot = Pez.transform.rotation.z;
+            //animator.Play("Base Layer.Eat", 0, 0); // para la animación
+            animator.SetBool("isGrabbed", true);
 
             angle = 0; 
             //timegrabbed = Time.deltaTime;
@@ -62,10 +60,11 @@ public class MovimientoPezCirc : MonoBehaviour
 
         else
         {
-            // rotamos bien el pez
-            //Pez.transform.rotation.x = 0;
-            //Pez.transform.rotation.z = 0;
-            // elipse
+
+            //animator.Play("Base Layer.Fear", 0, 0);
+            animator.SetBool("isGrabbed", false);
+
+            // circulo
             angle += speed * Time.deltaTime;
             Pez.transform.position = new Vector3(x + (Mathf.Sin(angle) * radiusx), y, z - radiusz + (Mathf.Cos(angle) * radiusz)); // a la pocicón del pez le resto el radio para que me de el centro de la circunferencia
             // Pez.transform.forward = new Vector3(x + (Mathf.Sin(angle + 20 ) * radiusx), 0, z + (Mathf.Cos(angle + 20) * radiusz));

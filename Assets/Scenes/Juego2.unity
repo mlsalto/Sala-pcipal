@@ -2661,10 +2661,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a55bde982f42c44a54ce6154cf662b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npeces: 3
-  pez: {fileID: 788024397}
-  minPosition: {x: 4, y: -1, z: 8}
-  maxPosition: {x: 5, y: 0, z: 9}
+  npeces: 4
+  Pez: {fileID: 788024397}
 --- !u!4 &1569765409
 Transform:
   m_ObjectHideFlags: 0
