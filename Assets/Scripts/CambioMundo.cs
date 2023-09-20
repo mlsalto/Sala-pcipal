@@ -36,7 +36,7 @@ public class CambioMundo : MonoBehaviour
 
             if (timer > 5)
             {
-                Cambio("Juego2");
+                StartCoroutine(LoadYourAsyncScene());
             }
         }
     }
@@ -47,8 +47,14 @@ public class CambioMundo : MonoBehaviour
         //contador = Time.deltaTime;
     }
 
-    public void Cambio(string nombre)
+    IEnumerator LoadYourAsyncScene()
     {
-        SceneManager.LoadScene(nombre);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Juego2");
+
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
     }
 }

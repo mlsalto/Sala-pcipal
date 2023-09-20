@@ -7,6 +7,7 @@ using System;
 public class MovimientoPezCirc : MonoBehaviour
 {
     public GameObject Pez;
+    public UxrGrabbableObjectAnchor frame;
     public float speed = 0.5f; // radianes/segundo
     public float radiusx = 5f;
     public float radiusz = 1.2f;
@@ -19,6 +20,8 @@ public class MovimientoPezCirc : MonoBehaviour
     //private float zrot; // centro de rotacion z
 
     private float angle;
+    private bool colocado;
+    private bool quieto;
     public UxrGrabbableObject pesesito;
     private Animator animator;
 
@@ -35,42 +38,60 @@ public class MovimientoPezCirc : MonoBehaviour
         // poner ángulo random //problema me lo hace con el banco de peces tmb????
         System.Random random = new System.Random();
         angle = (float)random.NextDouble();
+
+        colocado = false;
+        quieto = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //angle += (speed/(Mathf.PI*2*radius)) * Time.deltaTime;
-        //Pez.transform.position = new Vector3(-Mathf.Sin(angle) * radius, 0, Mathf.Cos(angle)) * radius * speed;
-        // Pez.transform.Rotate(0.0f, angle, 0.0f, Space.Self);
+        // si lo colocamos en su sitio
+        frame.Placed += ObjetoColocado;
 
-        if (pesesito.IsBeingGrabbed == true)
+        if (pesesito.IsBeingGrabbed == true )
         {
             // cuando lo coges vuelves a pillar los valores del pez :)
             x = Pez.transform.position.x;
             y = Pez.transform.position.y;
             z = Pez.transform.position.z;
 
-            //animator.Play("Base Layer.Eat", 0, 0); // para la animación
-            animator.SetBool("isGrabbed", true);
+            ////animator.Play("Base Layer.Eat", 0, 0); // para la animación
+            //animator.SetBool("isGrabbed", true);
 
-            angle = 0; 
+            angle = 0;
             //timegrabbed = Time.deltaTime;
+           
+            animator.SetBool("isGrabbed", true);
+       
         }
 
         else
         {
+            
 
-            //animator.Play("Base Layer.Fear", 0, 0);
-            animator.SetBool("isGrabbed", false);
 
-            // circulo
-            angle += speed * Time.deltaTime;
-            Pez.transform.position = new Vector3(x + (Mathf.Sin(angle) * radiusx), y, z - radiusz + (Mathf.Cos(angle) * radiusz)); // a la pocicón del pez le resto el radio para que me de el centro de la circunferencia
-            // Pez.transform.forward = new Vector3(x + (Mathf.Sin(angle + 20 ) * radiusx), 0, z + (Mathf.Cos(angle + 20) * radiusz));
-            Pez.transform.LookAt(new Vector3(x + (Mathf.Sin(angle - 25) * radiusx), y, z - radiusz + (Mathf.Cos(angle - 25) * radiusz)));
+            if (colocado == false)
+            {
+                // circulo
+                angle += speed * Time.deltaTime;
+                Pez.transform.position = new Vector3(x + (Mathf.Sin(angle) * radiusx), y, z - radiusz + (Mathf.Cos(angle) * radiusz)); // a la pocicón del pez le resto el radio para que me de el centro de la circunferencia
+                                                                                                                                       // Pez.transform.forward = new Vector3(x + (Mathf.Sin(angle + 20 ) * radiusx), 0, z + (Mathf.Cos(angle + 20) * radiusz));
+                Pez.transform.LookAt(new Vector3(x + (Mathf.Sin(angle - 25) * radiusx), y, z - radiusz + (Mathf.Cos(angle - 25) * radiusz)));
+
+                //animator.Play("Base Layer.Fear", 0, 0);
+                animator.SetBool("isGrabbed", false);
+            }
+            else
+            {
+                animator.SetBool("isGrabbed", false);
+            }
         }
 
+        void ObjetoColocado(object sender, UxrManipulationEventArgs e)
+        {
+            colocado = true;
+        }
     }
 }
 
