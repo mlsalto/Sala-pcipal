@@ -7,10 +7,12 @@ using System;
 public class MovimientoPezCirc : MonoBehaviour
 {
     public GameObject Pez;
-    public UxrGrabbableObjectAnchor frame;
-    public float speed = 0.5f; // radianes/segundo
+    //public UxrGrabbableObjectAnchor frame;
+    public float hspeed = 0.5f; // radianes/segundo
+    public float vspeed = 0.5f; // radianes/segundo
     public float radiusx = 5f;
     public float radiusz = 1.2f;
+    public float height = 1f;
     private float x; // centro de rotacion x
     private float y; // centro de rotacion y
     private float z; // centro de rotacion z
@@ -19,11 +21,14 @@ public class MovimientoPezCirc : MonoBehaviour
     //private float yrot; // centro de rotacion y
     //private float zrot; // centro de rotacion z
 
-    private float angle;
+    public float hangle;
+    private float vangle;
+
     private bool colocado;
     private bool quieto;
     public UxrGrabbableObject pesesito;
     private Animator animator;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -36,18 +41,17 @@ public class MovimientoPezCirc : MonoBehaviour
         z = Pez.transform.position.z;
 
         // poner ángulo random //problema me lo hace con el banco de peces tmb????
-        System.Random random = new System.Random();
-        angle = (float)random.NextDouble();
+        //System.Random random = new System.Random();
+        //hangle = (float)random.NextDouble();
 
         colocado = false;
-        quieto = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         // si lo colocamos en su sitio
-        frame.Placed += ObjetoColocado;
+        pesesito.Placed += ObjetoColocado;
 
         if (pesesito.IsBeingGrabbed == true )
         {
@@ -59,7 +63,7 @@ public class MovimientoPezCirc : MonoBehaviour
             ////animator.Play("Base Layer.Eat", 0, 0); // para la animación
             //animator.SetBool("isGrabbed", true);
 
-            angle = 0;
+            hangle = Pez.transform.rotation.y;
             //timegrabbed = Time.deltaTime;
            
             animator.SetBool("isGrabbed", true);
@@ -68,23 +72,22 @@ public class MovimientoPezCirc : MonoBehaviour
 
         else
         {
-            
-
 
             if (colocado == false)
             {
-                // circulo
-                angle += speed * Time.deltaTime;
-                Pez.transform.position = new Vector3(x + (Mathf.Sin(angle) * radiusx), y, z - radiusz + (Mathf.Cos(angle) * radiusz)); // a la pocicón del pez le resto el radio para que me de el centro de la circunferencia
+                //circulo
+                hangle += hspeed * Time.deltaTime;
+                vangle += vspeed * Time.deltaTime;
+                Pez.transform.position = new Vector3(x + (Mathf.Sin(hangle) * radiusx), y + (Mathf.Sin(vangle) * height), z - radiusz + (Mathf.Cos(hangle) * radiusz)); // a la pocicón del pez le resto el radio para que me de el centro de la circunferencia
                                                                                                                                        // Pez.transform.forward = new Vector3(x + (Mathf.Sin(angle + 20 ) * radiusx), 0, z + (Mathf.Cos(angle + 20) * radiusz));
-                Pez.transform.LookAt(new Vector3(x + (Mathf.Sin(angle - 25) * radiusx), y, z - radiusz + (Mathf.Cos(angle - 25) * radiusz)));
+                Pez.transform.LookAt(new Vector3(x + (Mathf.Sin(hangle - 25) * radiusx), y, z - radiusz + (Mathf.Cos(hangle - 25) * radiusz)));
 
                 //animator.Play("Base Layer.Fear", 0, 0);
                 animator.SetBool("isGrabbed", false);
             }
             else
             {
-                animator.SetBool("isGrabbed", false);
+            animator.SetBool("isGrabbed", false);
             }
         }
 

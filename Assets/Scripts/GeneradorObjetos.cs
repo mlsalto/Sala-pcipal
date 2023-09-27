@@ -4,60 +4,56 @@ using UnityEngine;
 
 public class GeneradorObjetos : MonoBehaviour
 {
-    //public int npeces;
-    //public GameObject Objeto1;
-    //public GameObject Objeto2;
-    //public GameObject Objeto3;
-    //public GameObject Objeto4;
-
-    ////
-    //private Vector3 minPosition;
-    //private Vector3 maxPosition;
-    ////public GameObject[npeces] peces;
-    //// peces = new GameObject[npeces];
-    ////GameObject[] peces = new GameObject[npeces];
-
-    //private GameObject[] peces;
-
-    //private float x; // centro de rotacion x
-    //private float y; // centro de rotacion y
-    //private float z; // centro de rotacion z
-
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //    //datos del pez central (alrededor de él se generan el resto de peces
-    //    x = Pez.transform.position.x;
-    //    y = Pez.transform.position.y;
-    //    z = Pez.transform.position.z;
-
-    //    // asociamos los limites según la posición del pez original cubo de 1 de arista
-    //    minPosition.x = Pez.transform.position.x - 0.5f;
-    //    minPosition.y = Pez.transform.position.y - 0.5f;
-    //    minPosition.z = Pez.transform.position.z - 0.5f;
-    //    maxPosition.x = Pez.transform.position.x + 0.5f;
-    //    maxPosition.y = Pez.transform.position.y + 0.5f;
-    //    maxPosition.z = Pez.transform.position.z + 0.5f;
+    public int nobjetos;
+    public GameObject Objeto;
+    public float alto;
+    public float ancho;
+    
+    private Vector3 minPosition;
+    private Vector3 maxPosition;
 
 
-    //    //inicializacion vector
-    //    peces = new GameObject[npeces];
+    private GameObject[] Objetos;
 
-    //    //inicializacion prefab
-    //    for (int i = 0; i < npeces; i++)
-    //    {
-    //        Vector3 randomPosition = new Vector3(
-    //            Random.Range(minPosition.x, maxPosition.x),
-    //            Random.Range(minPosition.y, maxPosition.y),
-    //            Random.Range(minPosition.z, maxPosition.z)
-    //         );
+    private float x; // centro de rotacion x
+    private float y; // centro de rotacion y
+    private float z; // centro de rotacion z
 
-    //        Instantiate(Pez, randomPosition, Quaternion.identity);
-    //    }
-    //}
-    //// Update is called once per frame
-    //void Update()
-    //{
+    // Start is called before the first frame update
+    void Start()
+    {
+        //datos del pez central (alrededor de él se generan el resto de peces
+        x = Objeto.transform.position.x;
+        y = Objeto.transform.position.y;
+        z = Objeto.transform.position.z;
 
-    //}
+        // asociamos los limites según la posición del pez original cubo de 1 de arista
+        minPosition.x = Objeto.transform.position.x - ancho;
+        minPosition.y = Objeto.transform.position.y - alto;
+        minPosition.z = Objeto.transform.position.z - ancho;
+        maxPosition.x = Objeto.transform.position.x + ancho;
+        maxPosition.y = Objeto.transform.position.y + alto;
+        maxPosition.z = Objeto.transform.position.z + ancho;
+
+
+        //inicializacion vector
+        Objetos = new GameObject[nobjetos];
+
+        //inicializacion prefab
+        for (int i = 0; i < nobjetos; i++)
+        {
+            Vector3 randomPosition = new Vector3(
+                Random.Range(minPosition.x, maxPosition.x),
+                Random.Range(minPosition.y, maxPosition.y),
+                Random.Range(minPosition.z, maxPosition.z)
+             );
+
+            Instantiate(Objeto, randomPosition, Quaternion.identity);
+        }
+    }
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }
