@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class CambioMundo : MonoBehaviour
 {
+    // holas??
 //    public GameObject llaveN1;
     public GameObject llaveN1;
     public GameObject llaveN2;
