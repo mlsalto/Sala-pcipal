@@ -13,10 +13,12 @@ public class ControlDelJuego : MonoBehaviour
 
     public  cajacupcakescript cajacup;
     public cajapiruletascript cajapiru;
+    public GameObject SUMADOR;
 
     public TextMeshProUGUI textoMagdalenaMarcador;
     public TextMeshProUGUI textoPiruletaMarcador;
     public TextMeshProUGUI textofinTiempo;
+    public TextMeshProUGUI textoPocosObjetosRecolectados;
     public TextMeshProUGUI textoResultadoIncorrecto1;
     public TextMeshProUGUI textoResultadoIncorrecto2;
     public TextMeshProUGUI textoResultadoCorrecto;
@@ -24,6 +26,10 @@ public class ControlDelJuego : MonoBehaviour
     public Button BotonOpcA;
     public Button BotonOpcB;
     public Button BotonOpcC;
+
+    public int total1;
+    public int total2;
+    public int total;
 
     public bool tiempoActivo;
     private int piruletaInter;
@@ -55,10 +61,24 @@ public class ControlDelJuego : MonoBehaviour
 
     public void FinTiempo()
     {
-        textofinTiempo.gameObject.SetActive(true);
-        BotonOpcA.gameObject.SetActive(true);
-        BotonOpcB.gameObject.SetActive(true);
-        BotonOpcC.gameObject.SetActive(true);
+        
+        if (total1 <= 0)
+        {
+            textoPocosObjetosRecolectados.gameObject.SetActive(true);
+        }
+        else
+        {
+            textofinTiempo.gameObject.SetActive(true);
+            BotonOpcA.gameObject.SetActive(true);
+            BotonOpcB.gameObject.SetActive(true);
+            BotonOpcC.gameObject.SetActive(true);
+            textoResultadoIncorrecto1.text = total1.ToString();
+            textoResultadoIncorrecto2.text = total2.ToString();
+            textoResultadoCorrecto.text = total.ToString();
+            SUMADOR.SetActive(true);
+            
+        }
+
         fin = true;
     }
 
@@ -85,7 +105,6 @@ public class ControlDelJuego : MonoBehaviour
             }
         }
 
-
         // cosas del juego
         timer -= Time.deltaTime;
 
@@ -97,27 +116,18 @@ public class ControlDelJuego : MonoBehaviour
         segundos= (int)(timer - minutos * 60f);
         cent= (int)((timer - (int)timer) * 100f);
         textTimer.text = string.Format("{0:00}:{1:00}:{2:00}", minutos, segundos, cent);
-        if (timer == 0) FinTiempo();
-        magdalenaInter = cajacup.contadorcake;
-        ActualizarMagdalenas(magdalenaInter);
-        piruletaInter = cajapiru.contadorpiruleta;
-        ActualizarPiruletas(piruletaInter);
-        int total1 = piruletaInter + magdalenaInter-1;
-        int total2 = piruletaInter + magdalenaInter + 2;
-        int total = piruletaInter + magdalenaInter;
-
-        if (total1 <= 0)
-        {
-            textoResultadoIncorrecto1.text = "Pocos objetos Recolectados. :(";
-            textoResultadoIncorrecto2.text = "";
-            textoResultadoCorrecto.text = "";
-        }
+        if (timer == 0)
+        { FinTiempo(); }
         else
         {
-            textoResultadoIncorrecto1.text = total1.ToString();
-            textoResultadoIncorrecto2.text = total2.ToString();
-            textoResultadoCorrecto.text = total.ToString();
+            magdalenaInter = cajacup.contadorcake;
+            ActualizarMagdalenas(magdalenaInter);
+            piruletaInter = cajapiru.contadorpiruleta;
+            ActualizarPiruletas(piruletaInter);
+            total1 = piruletaInter + magdalenaInter - 1;
+            total2 = piruletaInter + magdalenaInter + 2;
+            total = piruletaInter + magdalenaInter;
         }
-
+       
     }
 }
