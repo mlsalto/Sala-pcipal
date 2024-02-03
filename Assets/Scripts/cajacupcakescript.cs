@@ -8,6 +8,7 @@ public class cajacupcakescript : MonoBehaviour
 
     // Start is called before the first frame update
     public int contadorcake;
+ 
     void Start()
     {
         contadorcake = 0;
@@ -23,6 +24,7 @@ public class cajacupcakescript : MonoBehaviour
         if (collision.gameObject.tag == "Cupcake")
         {
             contadorcake++;
+            FindObjectOfType<AudioManager>().Play("win");
         }
     }
 

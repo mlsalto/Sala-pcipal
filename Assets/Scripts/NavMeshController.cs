@@ -9,6 +9,7 @@ public class NavMeshController : MonoBehaviour
     NavMeshAgent agent = null;
     Animator anim;
 
+
     void Start()
     {
        agent = GetComponent<NavMeshAgent>();
@@ -17,7 +18,15 @@ public class NavMeshController : MonoBehaviour
 
     void Update()
     {
-        agent.destination = objetivo.position + new Vector3(1.5f, 0.0f, 1.5f);
+        if (objetivo != null)
+        {
+            agent.destination = objetivo.position + new Vector3(1.5f, 0.0f, 1.5f);
+        }
+        else
+        {
+            agent.destination =  new Vector3(-5.591593f, -1.037843f, 8.644474f);
+        }
+        
         UpdateAnimation();
     }
 

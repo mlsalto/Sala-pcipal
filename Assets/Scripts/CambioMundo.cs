@@ -23,16 +23,19 @@ public class CambioMundo : MonoBehaviour
     private bool colocado1;
     private bool colocado2;
     private float timer;
-    private int nivel;
+    //private int nivel;
+
+ 
 
     void Start()
     {
         colocado1 = false;
         colocado2 = false;
         timer = 0.0f;
-        nivel = 0;
-   
+      //  nivel = 0;
+        
     }
+
 
     // Update is called once per frame
     void Update()
@@ -40,25 +43,30 @@ public class CambioMundo : MonoBehaviour
         cilindro1.Placed += ObjetoColocado1; // etiqueta de evento se usa así jeje
         cilindro2.Placed += ObjetoColocado2; // etiqueta de evento se usa así jeje
 
-
         if (colocado1 == true)
         {
             timer += Time.deltaTime;
             llaveN1.transform.localScale += new Vector3(0.0f, 0.01f, 0.0f);
-
+            FindObjectOfType<AudioManager>().Play("llave");
             if (timer > 5)
             {
-                StartCoroutine(LoadYourAsyncScene1());
+
+                // StartCoroutine(LoadYourAsyncScene1());
+                SceneManager.LoadScene("Juego1");
+                
             }
         }
         else if (colocado2 == true)
         {
             timer += Time.deltaTime;
             llaveN2.transform.localScale += new Vector3(0.0f, 0.01f, 0.0f);
-
+            FindObjectOfType<AudioManager>().Play("llave");
             if (timer > 5)
             {
-                StartCoroutine(LoadYourAsyncScene2());
+
+                
+                SceneManager.LoadScene("Juego2");
+                //StartCoroutine(LoadYourAsyncScene2());
             }
         }
     }
@@ -82,7 +90,8 @@ public class CambioMundo : MonoBehaviour
     //    else if (Nivel3.IsBeingGrabbed == true) { nivel = 3; }
     //    else if (Nivel4.IsBeingGrabbed == true) { nivel = 4; }
     //}
-
+    
+    /*
     IEnumerator LoadYourAsyncScene1()
     {
         AsyncOperation asyncLoad1 = SceneManager.LoadSceneAsync("Juego1");
@@ -101,5 +110,5 @@ public class CambioMundo : MonoBehaviour
         {
             yield return null;
         }
-    }
+    }*/
 }

@@ -23,6 +23,7 @@ public class cajadonascript : MonoBehaviour
         if (collision.gameObject.tag == "Dona")
         {
             contadordona++;
+            FindObjectOfType<AudioManager>().Play("win");
         }
     }
 
