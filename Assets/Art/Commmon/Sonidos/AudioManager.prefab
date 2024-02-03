@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8848066200763895889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8848066200763895895}
+  - component: {fileID: 8848066200763895894}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8848066200763895895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8848066200763895889}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.6341965, y: 0.59467137, z: -102.27311}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8848066200763895894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8848066200763895889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 185a2d45a5e35ae449e52a7599eda67c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: FinTiempo
+    clip: {fileID: 8300000, guid: e66eabaec4426c54283ce2ee00aab3a1, type: 3}
+    volume: 0.098
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: win
+    clip: {fileID: 8300000, guid: c5de04f871a48ac4ba23d153fea8006c, type: 3}
+    volume: 0.066
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: skyloop
+    clip: {fileID: 8300000, guid: 2113fe76d9ff1b5429b03a47ec3b075d, type: 3}
+    volume: 0.321
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
