@@ -27,6 +27,7 @@ public class cajapiruletascript : MonoBehaviour
         if (collision.gameObject.tag == "Piruleta")
         {
             contadorpiruleta++;
+            FindObjectOfType<AudioManager>().Play("win");
         }
     }
 }

@@ -9,7 +9,6 @@ public class cajagalletascript : MonoBehaviour
     // Start is called before the first frame update
     public int contadorgalleta;
 
-
     void Start()
     {
         contadorgalleta = 0;
@@ -27,6 +26,7 @@ public class cajagalletascript : MonoBehaviour
         if (collision.gameObject.tag == "Galleta")
         {
             contadorgalleta++;
+            FindObjectOfType<AudioManager>().Play("win");
         }
     }
 }
