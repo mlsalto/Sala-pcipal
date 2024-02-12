@@ -1,8 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 8f6ea99ef2e5f124388e192e6a204c8c
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
+=======
+guid: c839e64d2723d73459c76b5df28f4a2d
+folderAsset: yes
+timeCreated: 1620347107
+licenseType: Store
+DefaultImporter:
+>>>>>>> pruebas-lisa3
   userData: 
   assetBundleName: 
   assetBundleVariant: 

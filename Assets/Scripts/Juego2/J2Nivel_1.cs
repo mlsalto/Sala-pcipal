@@ -15,7 +15,7 @@ public class J2Nivel_1 : MonoBehaviour
     //private int[] vectorNum = { 1, 2, 3, 4, 5 };
     private bool start;
     private int numParaSumar;
-    public TriggerAcuario acuario;
+    public ObjetoEnArea acuario;
     public GameObject botonE;
 
     // Start is called before the first frame update
