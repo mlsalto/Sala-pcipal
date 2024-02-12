@@ -37,11 +37,12 @@ public class ObjetoEnArea : MonoBehaviour
     {
         Debug.Log("ok ontrigger enter");
         // Check if the entering object is within the 3D rectangle
-        if (CheckObjectsInsideRectangle(collider.transform.position) == true)
-        {
-            Debug.Log("ok insiderectangle");
-            sumaObjetosArea(true, collider);
-        }
+        //if (CheckObjectsInsideRectangle(collider.transform.position) == true)
+        //{
+        //    Debug.Log("ok insiderectangle");
+        //    sumaObjetosArea(true, collider);
+        //}
+        sumaObjetosArea(true, collider);
     }
 
     // Funcion de si sale algo del cuadrado //
@@ -49,10 +50,11 @@ public class ObjetoEnArea : MonoBehaviour
     {
         Debug.Log("ok ontrigger exit");
         // Check if the exiting object was inside the 3D rectangle
-        if (CheckObjectsInsideRectangle(collider.transform.position) == false)
-        {
-            sumaObjetosArea(false, collider);
-        }
+        //if (CheckObjectsInsideRectangle(collider.transform.position) == false)
+        //{
+        //    sumaObjetosArea(false, collider);
+        //}
+        sumaObjetosArea(false, collider);
     }
 
     private void sumaObjetosArea(bool isuma, Collider collider)
@@ -88,23 +90,35 @@ public class ObjetoEnArea : MonoBehaviour
             {
                 if (vectorNum[a] == int.Parse(collider.gameObject.tag))
                 {
-                    Debug.Log("num encontrado");
-                    // Retroceder los valores en la posición dada
-                    for (int b = a; b <= i - 2; b++)
+                    // en el caso de que solo haya un numero
+                    if (a == 0 && i == 1)
                     {
-                        vectorNum[b] = vectorNum[b + 1];
-                    }
-            
-
-                    // hacemos los calculos quitando el numero que hemos quitado
-                    i--;
-
-                    for (int c = 0; c <= i; c++)
-                    {
-                        suma += vectorNum[c];
+                        i--;
+                        suma = 0;
+                        vectorNum[a] = 0;
+                        return;
                     }
 
-                    return;
+                    //en el resto de casos
+                    else {
+                        Debug.Log("num encontrado");
+                        // Retroceder los valores en la posición dada
+                        for (int b = a; b <= i - 2; b++)
+                        {
+                            vectorNum[b] = vectorNum[b + 1];
+                        }
+
+
+                        // hacemos los calculos quitando el numero que hemos quitado
+                        i--;
+
+                        for (int c = 0; c <= i; c++)
+                        {
+                            suma += vectorNum[c];
+                        }
+
+                        return;
+                    }
 
                 }
             }
@@ -114,9 +128,9 @@ public class ObjetoEnArea : MonoBehaviour
 
     bool CheckObjectsInsideRectangle(Vector3 position)
     {
-        float medioAncho = ancho / 2f;
-        float medioLargo = largo / 2f;
-        float medioAlto = alto / 2f;
+        float medioAncho = ancho;
+        float medioLargo = largo ;
+        float medioAlto = alto ;
 
         // distancia entre el objeto central y el collider que entra/sale
         float deltaX = Mathf.Abs(position.x - posicionCentral.x);

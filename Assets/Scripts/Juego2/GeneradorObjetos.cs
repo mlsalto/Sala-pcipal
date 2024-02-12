@@ -6,8 +6,10 @@ public class GeneradorObjetos : MonoBehaviour
 {
     public int nobjetos;
     public GameObject Objeto;
-    public float alto;
+
     public float ancho;
+    public float alto;
+    public float largo;
     
     private Vector3 minPosition;
     private Vector3 maxPosition;
@@ -30,10 +32,10 @@ public class GeneradorObjetos : MonoBehaviour
         // asociamos los limites según la posición del pez original cubo de 1 de arista
         minPosition.x = Objeto.transform.position.x - ancho;
         minPosition.y = Objeto.transform.position.y - alto;
-        minPosition.z = Objeto.transform.position.z - ancho;
+        minPosition.z = Objeto.transform.position.z - largo;
         maxPosition.x = Objeto.transform.position.x + ancho;
         maxPosition.y = Objeto.transform.position.y + alto;
-        maxPosition.z = Objeto.transform.position.z + ancho;
+        maxPosition.z = Objeto.transform.position.z + largo;
 
 
         //inicializacion vector

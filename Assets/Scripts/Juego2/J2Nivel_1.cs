@@ -15,6 +15,7 @@ public class J2Nivel_1 : MonoBehaviour
     //private int[] vectorNum = { 1, 2, 3, 4, 5 };
     private bool start;
     private int numParaSumar;
+    private int suma;
     public ObjetoEnArea acuario;
     public GameObject botonE;
 
@@ -24,6 +25,7 @@ public class J2Nivel_1 : MonoBehaviour
         // creamos un numero aleatorio para el que tenemos que sumar  //
         System.Random random = new System.Random();
         numParaSumar = random.Next(1, 11); //numero del 1 al 10
+        suma = 0;
         start = false;
         botonE.SetActive(true);
         texto.text = "El mar se está quedando sin peces por la contaminación. \n ¡¡¡¡ Ayudame a repoblarlos sumando !!!!";
@@ -41,12 +43,12 @@ public class J2Nivel_1 : MonoBehaviour
             botonE.SetActive(false);
             texto.text = "Suma los peces para conseguir el número " + numParaSumar.ToString() + "\n \n" + ConvertirVectorATexto(acuario.vectNumeros, acuario.numPecesIn);
 
-            if (numParaSumar == acuario.sumaTot)
+            if (numParaSumar == suma)
             {
                 texto.text = "Suma los peces para conseguir el número " + numParaSumar.ToString() + "\n \n" + ConvertirVectorATexto(acuario.vectNumeros, acuario.numPecesIn) + "\n \n" + "CORRECTO  :)";
             }
 
-            else if (numParaSumar < acuario.sumaTot)
+            else if (numParaSumar < suma)
             {
                 texto.text = "Suma los peces para conseguir el número " + numParaSumar.ToString() + "\n \n" + ConvertirVectorATexto(acuario.vectNumeros, acuario.numPecesIn) + "\n \n" + "INCORRECTO  :(";
             }
@@ -61,10 +63,10 @@ public class J2Nivel_1 : MonoBehaviour
     }
 
     // Funcion que convierte el vector de numeros a texto
-    static string ConvertirVectorATexto(int[] vector, int size)
+    private string ConvertirVectorATexto(int[] vector, int size)
     {
         StringBuilder textoTmp = new StringBuilder();
-        int suma = 0;
+        suma = 0;
 
         // Verificar si el vector tiene elementos
         if (vector.Length > 0)
