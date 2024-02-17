@@ -8,6 +8,8 @@ public class ObjetoEnArea : MonoBehaviour
 
     public GameObject objetoCentral;
     public BoxCollider objetoCollider;
+
+
     private float ancho;
     private float largo;
     private float alto;
@@ -32,28 +34,15 @@ public class ObjetoEnArea : MonoBehaviour
         alto = objetoCollider.size.z;
     }
 
-    // Funcion de si entra algo en el cuadrado //
+    //  si entra algo en el cuadrado //
     private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("ok ontrigger enter");
-        // Check if the entering object is within the 3D rectangle
-        //if (CheckObjectsInsideRectangle(collider.transform.position) == true)
-        //{
-        //    Debug.Log("ok insiderectangle");
-        //    sumaObjetosArea(true, collider);
-        //}
         sumaObjetosArea(true, collider);
     }
 
-    // Funcion de si sale algo del cuadrado //
+    //  si sale algo del cuadrado //
     private void OnTriggerExit(Collider collider)
     {
-        Debug.Log("ok ontrigger exit");
-        // Check if the exiting object was inside the 3D rectangle
-        //if (CheckObjectsInsideRectangle(collider.transform.position) == false)
-        //{
-        //    sumaObjetosArea(false, collider);
-        //}
         sumaObjetosArea(false, collider);
     }
 
@@ -62,7 +51,6 @@ public class ObjetoEnArea : MonoBehaviour
         // si es suma
         if(isuma == true) 
         {
-            Debug.Log("suma");
 
             //** FUNCION DE SUMA **//
 
@@ -81,7 +69,7 @@ public class ObjetoEnArea : MonoBehaviour
         // si es resta
         else if (isuma == false)
         {
-            Debug.Log("resta");
+
             //** FUNCION DE RESTA **//
 
             int a = 0;
@@ -136,8 +124,6 @@ public class ObjetoEnArea : MonoBehaviour
         float deltaX = Mathf.Abs(position.x - posicionCentral.x);
         float deltaY = Mathf.Abs(position.y - posicionCentral.y);
         float deltaZ = Mathf.Abs(position.z - posicionCentral.z);
-
-        Debug.Log(" ( " + medioAncho + " , " + medioLargo + " , " + medioAlto + " ) " + " ( " + deltaX + " , " + deltaY + " , " + deltaZ + " ) ");
 
         if (deltaX <= medioAncho && deltaY <= medioLargo && deltaZ <= medioAlto) {
             return true;

@@ -10,25 +10,32 @@ using System.Text;
 
 public class J2Nivel_1 : MonoBehaviour
 {
-    [SerializeField] private TMP_Text texto;
-
-    //private int[] vectorNum = { 1, 2, 3, 4, 5 };
-    private bool start;
-    private int numParaSumar;
-    private int suma;
+ 
+    // variables publicas
     public ObjetoEnArea acuario;
     public GameObject botonE;
+
+    public GameObject ObjetosNivel_1;
+    public GameObject ObjetosNivel_2;
+    public GameObject ObjetosNivel_3;
+    public GameObject ObjetosNivel_4;
+
+    // variables privadas
+    private bool start;
+    [SerializeField] private TMP_Text texto;
+    private int numParaSumar;
+    private int suma;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        // creamos un numero aleatorio para el que tenemos que sumar  //
-        System.Random random = new System.Random();
-        numParaSumar = random.Next(1, 11); //numero del 1 al 10
-        suma = 0;
         start = false;
         botonE.SetActive(true);
         texto.text = "El mar se está quedando sin peces por la contaminación. \n ¡¡¡¡ Ayudame a repoblarlos sumando !!!!";
+
+        // inicializamos con el nivel 1
+        setNivel(1);
     }
 
     // Update is called once per frame
@@ -36,8 +43,7 @@ public class J2Nivel_1 : MonoBehaviour
     {
         //IF LE DAN A OK EN EL MENÚ ANTERIOR HAZ LO SIGUIENTE:
         //El numero del nivel 1 es de 1-10, nivel 2 10-99, nivel 3 99-999, (solo con dec, cent, uni) 
-        // suma
-        //vectorNum = acuario.vectorNum;
+
         if (start == true)
         {
             botonE.SetActive(false);
@@ -55,37 +61,77 @@ public class J2Nivel_1 : MonoBehaviour
         }
     }
 
-    // funcion para empezar juego 
-
-    public void empezarJuego()
-    {
-        start = true;
-    }
-
     // Funcion que convierte el vector de numeros a texto
     private string ConvertirVectorATexto(int[] vector, int size)
     {
         StringBuilder textoTmp = new StringBuilder();
         suma = 0;
 
-        // Verificar si el vector tiene elementos
+        // vector no vacio 
         if (vector.Length > 0)
         {
-            // Agregar el primer elemento
+            // primer numero
             textoTmp.Append(vector[0]);
             suma = vector[0];
 
-            // Agregar los demás elementos con el formato "+ elemento"
+            // resto numeros
             for (int i = 1; i < size; i++)
             {
                 textoTmp.Append(" + " + vector[i]);
                 suma += vector[i];
             }
 
-            // Agregar la suma
+            // suma
             textoTmp.Append(" = " + suma);
         }
 
         return textoTmp.ToString();
+    }
+
+    // funcion para empezar juego 
+    public void empezarJuego()
+    {
+        start = true;
+    }
+
+    //funcion de cambio de niveles & incializacion de niveles
+    private void setNivel(int nivel)
+    {
+        // creamos un numero aleatorio para el que tenemos que sumar  //
+        System.Random random = new System.Random();
+        suma = 0;
+
+        // apagar todos los objetos
+        ObjetosNivel_1.SetActive(false);
+        ObjetosNivel_2.SetActive(false);
+        ObjetosNivel_3.SetActive(false);
+        ObjetosNivel_4.SetActive(false);
+
+        // encender el objeto correspondiente y generar el número
+        switch (nivel)
+        {
+            case 1:
+                numParaSumar = random.Next(1, 11); //numero del 1 al 10
+                ObjetosNivel_1.SetActive(true);
+                break;
+
+            case 2:
+                numParaSumar = random.Next(1, 101); //numero del 1 al 100
+                ObjetosNivel_2.SetActive(true);
+                break;
+
+            case 3:
+                numParaSumar = random.Next(1, 1001); //numero del 1 al 1000
+                ObjetosNivel_3.SetActive(true);
+                break;
+
+            case 4:
+                numParaSumar = random.Next(1, 101); //numero del 1 al 100
+                ObjetosNivel_4.SetActive(true);
+                break;
+
+            default:
+                break;
+        }
     }
 }

@@ -7,19 +7,17 @@ using System;
 public class MovimientoPezCirc : MonoBehaviour
 {
     public GameObject Pez;
-    //public UxrGrabbableObjectAnchor frame;
+
     public float hspeed = 0.5f; // radianes/segundo
     public float vspeed = 0.5f; // radianes/segundo
     public float radiusx = 5f;
     public float radiusz = 1.2f;
     public float height = 1f;
+
     private float x; // centro de rotacion x
     private float y; // centro de rotacion y
     private float z; // centro de rotacion z
 
-    //private float xrot; // centro de rotacion x
-    //private float yrot; // centro de rotacion y
-    //private float zrot; // centro de rotacion z
 
     public float hangle;
     private float vangle;

@@ -11,9 +11,9 @@ public class GeneradorObjetos : MonoBehaviour
     public float alto;
     public float largo;
     
+
     private Vector3 minPosition;
     private Vector3 maxPosition;
-
 
     private GameObject[] Objetos;
 
@@ -21,10 +21,11 @@ public class GeneradorObjetos : MonoBehaviour
     private float y; // centro de rotacion y
     private float z; // centro de rotacion z
 
+
     // Start is called before the first frame update
     void Start()
     {
-        //datos del pez central (alrededor de él se generan el resto de peces
+        //datos del pez central (alrededor de él se generan el resto de peces)
         x = Objeto.transform.position.x;
         y = Objeto.transform.position.y;
         z = Objeto.transform.position.z;
