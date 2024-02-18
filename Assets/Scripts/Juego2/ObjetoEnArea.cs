@@ -116,16 +116,12 @@ public class ObjetoEnArea : MonoBehaviour
 
     bool CheckObjectsInsideRectangle(Vector3 position)
     {
-        float medioAncho = ancho;
-        float medioLargo = largo ;
-        float medioAlto = alto ;
-
         // distancia entre el objeto central y el collider que entra/sale
         float deltaX = Mathf.Abs(position.x - posicionCentral.x);
         float deltaY = Mathf.Abs(position.y - posicionCentral.y);
         float deltaZ = Mathf.Abs(position.z - posicionCentral.z);
 
-        if (deltaX <= medioAncho && deltaY <= medioLargo && deltaZ <= medioAlto) {
+        if (deltaX <= ancho && deltaY <= largo && deltaZ <= alto) {
             return true;
         }
         else return false;

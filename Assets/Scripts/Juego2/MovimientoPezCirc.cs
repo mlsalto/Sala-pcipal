@@ -24,9 +24,10 @@ public class MovimientoPezCirc : MonoBehaviour
 
     private bool colocado;
     private bool quieto;
+    private bool agua;
     public UxrGrabbableObject pesesito;
     private Animator animator;
-   
+
 
     // Start is called before the first frame update
     void Start()
@@ -51,48 +52,76 @@ public class MovimientoPezCirc : MonoBehaviour
         // si lo colocamos en su sitio
         pesesito.Placed += ObjetoColocado;
 
-        if (pesesito.IsBeingGrabbed == true )
+        if (pesesito.IsBeingGrabbed == true)
         {
-            // cuando lo coges vuelves a pillar los valores del pez :)
-            x = Pez.transform.position.x;
-            y = Pez.transform.position.y;
-            z = Pez.transform.position.z;
+            movimientoEnMano();
 
-            ////animator.Play("Base Layer.Eat", 0, 0); // para la animación
-            //animator.SetBool("isGrabbed", true);
-
-            hangle = Pez.transform.rotation.y;
-            //timegrabbed = Time.deltaTime;
-           
-            animator.SetBool("isGrabbed", true);
-       
         }
 
         else
         {
+            animator.SetBool("isGrabbed", false);
 
             if (colocado == false)
             {
-                //circulo
-                hangle += hspeed * Time.deltaTime;
-                vangle += vspeed * Time.deltaTime;
-                Pez.transform.position = new Vector3(x + (Mathf.Sin(hangle) * radiusx), y + (Mathf.Sin(vangle) * height), z - radiusz + (Mathf.Cos(hangle) * radiusz)); // a la pocicón del pez le resto el radio para que me de el centro de la circunferencia
-                                                                                                                                       // Pez.transform.forward = new Vector3(x + (Mathf.Sin(angle + 20 ) * radiusx), 0, z + (Mathf.Cos(angle + 20) * radiusz));
-                Pez.transform.LookAt(new Vector3(x + (Mathf.Sin(hangle - 25) * radiusx), y, z - radiusz + (Mathf.Cos(hangle - 25) * radiusz)));
-
-                //animator.Play("Base Layer.Fear", 0, 0);
-                animator.SetBool("isGrabbed", false);
-            }
-            else
-            {
-            animator.SetBool("isGrabbed", false);
-            }
+                movimientoNormal();
+            } 
         }
 
         void ObjetoColocado(object sender, UxrManipulationEventArgs e)
         {
             colocado = true;
         }
+    }
+
+    //  si entra algo en el cuadrado //
+    private void OnTriggerEnter(Collider collider)
+    {
+        agua = true;
+    }
+
+    //  si sale algo del cuadrado //
+    private void OnTriggerExit(Collider collider)
+    {
+        agua = false;
+    }
+
+    // funcion de movimiento estandar del pez
+    private void movimientoNormal()
+    {
+        // movimiento dentro del agua
+        if (agua == true)
+        {
+            //circulo
+            hangle += hspeed * Time.deltaTime;
+            vangle += vspeed * Time.deltaTime;
+            Pez.transform.position = new Vector3(x + (Mathf.Sin(hangle) * radiusx), y + (Mathf.Sin(vangle) * height), z - radiusz + (Mathf.Cos(hangle) * radiusz)); // a la pocicón del pez le resto el radio para que me de el centro de la circunferencia
+                                                                                                                                                                    // Pez.transform.forward = new Vector3(x + (Mathf.Sin(angle + 20 ) * radiusx), 0, z + (Mathf.Cos(angle + 20) * radiusz));
+            Pez.transform.LookAt(new Vector3(x + (Mathf.Sin(hangle - 25) * radiusx), y, z - radiusz + (Mathf.Cos(hangle - 25) * radiusz)));
+        }
+
+        // movimiento fuera del agua
+        else { 
+            // hacer funcion
+        }
+    }
+
+
+    // funcion en caso de estar cogidos por el jugador
+    private void movimientoEnMano()
+    {
+        // cuando lo coges vuelves a pillar los valores del pez :)
+        x = Pez.transform.position.x;
+        y = Pez.transform.position.y;
+        z = Pez.transform.position.z;
+
+        ////animator.Play("Base Layer.Eat", 0, 0); // para la animación
+        //animator.SetBool("isGrabbed", true);
+
+        hangle = Pez.transform.rotation.y;
+
+
+        animator.SetBool("isGrabbed", true);
     }
 }
 
