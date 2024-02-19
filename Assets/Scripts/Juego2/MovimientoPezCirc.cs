@@ -44,6 +44,7 @@ public class MovimientoPezCirc : MonoBehaviour
         //hangle = (float)random.NextDouble();
 
         colocado = false;
+        agua = true;
     }
 
     // Update is called once per frame
@@ -61,6 +62,7 @@ public class MovimientoPezCirc : MonoBehaviour
         else
         {
             animator.SetBool("isGrabbed", false);
+            animator.SetBool("isWater", true);
 
             if (colocado == false)
             {
@@ -100,10 +102,11 @@ public class MovimientoPezCirc : MonoBehaviour
             Pez.transform.LookAt(new Vector3(x + (Mathf.Sin(hangle - 25) * radiusx), y, z - radiusz + (Mathf.Cos(hangle - 25) * radiusz)));
         }
 
-        // movimiento fuera del agua
-        else { 
-            // hacer funcion
-        }
+        //// movimiento fuera del agua
+        //else {
+        //    animator.SetBool("isWater", true);
+        //    // hacer funcion
+        //}
     }
 
 
