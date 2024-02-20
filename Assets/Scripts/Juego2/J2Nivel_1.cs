@@ -14,6 +14,9 @@ public class J2Nivel_1 : MonoBehaviour
     // variables publicas
     public ObjetoEnArea acuario;
     public GameObject botonE;
+    public GameObject botonO;
+    public GameObject botonS;
+
 
     public GameObject ObjetosNivel_1;
     public GameObject ObjetosNivel_2;
@@ -22,20 +25,23 @@ public class J2Nivel_1 : MonoBehaviour
 
     // variables privadas
     private bool start;
+    private int nivel;
     [SerializeField] private TMP_Text texto;
     private int numParaSumar;
     private int suma;
-
+    private System.Random random;
 
     // Start is called before the first frame update
     void Start()
     {
         start = false;
+        nivel = 1;
         botonE.SetActive(true);
+        botonO.SetActive(false);
+        botonS.SetActive(false);
         texto.text = "El mar se está quedando sin peces por la contaminación. \n ¡¡¡¡ Ayudame a repoblarlos sumando !!!!";
 
-        // inicializamos con el nivel 1
-        setNivel(1);
+        random = new System.Random();
     }
 
     // Update is called once per frame
@@ -47,11 +53,14 @@ public class J2Nivel_1 : MonoBehaviour
         if (start == true)
         {
             botonE.SetActive(false);
+            botonO.SetActive(true);
+
             texto.text = "Suma los peces para conseguir el número " + numParaSumar.ToString() + "\n \n" + ConvertirVectorATexto(acuario.vectNumeros, acuario.numPecesIn);
 
             if (numParaSumar == suma)
             {
                 texto.text = "Suma los peces para conseguir el número " + numParaSumar.ToString() + "\n \n" + ConvertirVectorATexto(acuario.vectNumeros, acuario.numPecesIn) + "\n \n" + "CORRECTO  :)";
+                botonS.SetActive(true);
             }
 
             else if (numParaSumar < suma)
@@ -91,15 +100,31 @@ public class J2Nivel_1 : MonoBehaviour
     // funcion para empezar juego 
     public void empezarJuego()
     {
+       
+        setNivel(nivel);
         start = true;
+    }
+    
+    public void siguienteNivel()
+    {
+        botonS.SetActive(false);
+        nivel++;
+        setNivel(nivel);
     }
 
     //funcion de cambio de niveles & incializacion de niveles
-    private void setNivel(int nivel)
+    public void setNivel(int n)
     {
-        // creamos un numero aleatorio para el que tenemos que sumar  //
-        System.Random random = new System.Random();
+     
+        // creamos un numero aleatorio para el que tenemos que sumar  //       
         suma = 0;
+
+        // reiniciar todos los objetos
+        ObjetosNivel_1.GetComponent<ObjetosNivel>().eliminarObjetosDinamicos();
+        ObjetosNivel_2.GetComponent<ObjetosNivel>().eliminarObjetosDinamicos();
+        ObjetosNivel_3.GetComponent<ObjetosNivel>().eliminarObjetosDinamicos();
+        ObjetosNivel_4.GetComponent<ObjetosNivel>().eliminarObjetosDinamicos();
+
 
         // apagar todos los objetos
         ObjetosNivel_1.SetActive(false);
@@ -108,25 +133,29 @@ public class J2Nivel_1 : MonoBehaviour
         ObjetosNivel_4.SetActive(false);
 
         // encender el objeto correspondiente y generar el número
-        switch (nivel)
+        switch (n)
         {
             case 1:
                 numParaSumar = random.Next(1, 11); //numero del 1 al 10
+                ObjetosNivel_1.GetComponent<ObjetosNivel>().reiniciar();
                 ObjetosNivel_1.SetActive(true);
                 break;
 
             case 2:
                 numParaSumar = random.Next(1, 101); //numero del 1 al 100
+                ObjetosNivel_2.GetComponent<ObjetosNivel>().reiniciar();
                 ObjetosNivel_2.SetActive(true);
                 break;
 
             case 3:
                 numParaSumar = random.Next(1, 1001); //numero del 1 al 1000
+                ObjetosNivel_3.GetComponent<ObjetosNivel>().reiniciar();
                 ObjetosNivel_3.SetActive(true);
                 break;
 
             case 4:
                 numParaSumar = random.Next(1, 101); //numero del 1 al 100
+                ObjetosNivel_4.GetComponent<ObjetosNivel>().reiniciar();
                 ObjetosNivel_4.SetActive(true);
                 break;
 

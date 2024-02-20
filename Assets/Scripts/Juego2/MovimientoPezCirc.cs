@@ -27,7 +27,7 @@ public class MovimientoPezCirc : MonoBehaviour
     private bool agua;
     public UxrGrabbableObject pesesito;
     private Animator animator;
-
+    private Vector3 posini; 
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +39,7 @@ public class MovimientoPezCirc : MonoBehaviour
         y = Pez.transform.position.y;
         z = Pez.transform.position.z;
 
+        posini = Pez.transform.position;
         // poner ángulo random //problema me lo hace con el banco de peces tmb????
         //System.Random random = new System.Random();
         //hangle = (float)random.NextDouble();
@@ -125,6 +126,19 @@ public class MovimientoPezCirc : MonoBehaviour
 
 
         animator.SetBool("isGrabbed", true);
+    }
+
+    // reiniciar valores y todo
+    public void reiniciar()
+    {
+        colocado = false;
+        agua = true;
+
+        Pez.transform.position = posini;
+
+        x = Pez.transform.position.x;
+        y = Pez.transform.position.y;
+        z = Pez.transform.position.z;
     }
 }
 

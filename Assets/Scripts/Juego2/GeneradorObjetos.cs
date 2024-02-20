@@ -21,6 +21,7 @@ public class GeneradorObjetos : MonoBehaviour
     private float y; // centro de rotacion y
     private float z; // centro de rotacion z
 
+    private Vector3 posini;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,40 @@ public class GeneradorObjetos : MonoBehaviour
         y = Objeto.transform.position.y;
         z = Objeto.transform.position.z;
 
+        // pos ini 
+        posini = Objeto.transform.position;
+
+        //inicializacion vector
+        Objetos = new GameObject[nobjetos];
+
+        reiniciar();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void eliminarObjetosDinamicos()
+    {
+        // eliminas los objetos dinamicos
+        for (int i = 0; i < nobjetos; i++)
+        {
+            Destroy(Objetos[i]);
+        }
+
+        // colocas el objeto inicial
+        //Objeto.transform.position = posini;
+       
+        //iniciarObjetos();
+
+    }
+
+    public void reiniciar()
+    {
+        //Objeto.transform.position = posini;
+
         // asociamos los limites según la posición del pez original cubo de 1 de arista
         minPosition.x = Objeto.transform.position.x - ancho;
         minPosition.y = Objeto.transform.position.y - alto;
@@ -37,10 +72,6 @@ public class GeneradorObjetos : MonoBehaviour
         maxPosition.x = Objeto.transform.position.x + ancho;
         maxPosition.y = Objeto.transform.position.y + alto;
         maxPosition.z = Objeto.transform.position.z + largo;
-
-
-        //inicializacion vector
-        Objetos = new GameObject[nobjetos];
 
         //inicializacion prefab
         for (int i = 0; i < nobjetos; i++)
@@ -51,12 +82,7 @@ public class GeneradorObjetos : MonoBehaviour
                 Random.Range(minPosition.z, maxPosition.z)
              );
 
-            Instantiate(Objeto, randomPosition, Quaternion.identity);
+            Objetos[i] = Instantiate(Objeto, randomPosition, Quaternion.identity);
         }
-    }
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
