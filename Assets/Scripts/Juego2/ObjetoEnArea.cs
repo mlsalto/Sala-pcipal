@@ -25,7 +25,7 @@ public class ObjetoEnArea : MonoBehaviour
         // variables para cuentas
         i = 0;
         suma = 0;
-        vectorNum = new int[10];
+        vectorNum = new int[20];
 
         //variables de posicion de objetos
         posicionCentral = objetoCentral.transform.position;
@@ -42,7 +42,7 @@ public class ObjetoEnArea : MonoBehaviour
 
     //  si sale algo del cuadrado //
     private void OnTriggerExit(Collider collider)
-    {
+    {      
         sumaObjetosArea(false, collider);
     }
 
@@ -127,6 +127,12 @@ public class ObjetoEnArea : MonoBehaviour
         else return false;
     }
 
+    public void reiniciar()
+    {
+        i = 0;
+        suma = 0;
+        vectorNum = new int[20];
+    }
 
     public int[] vectNumeros
     {

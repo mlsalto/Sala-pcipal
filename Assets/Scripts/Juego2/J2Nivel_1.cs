@@ -25,6 +25,7 @@ public class J2Nivel_1 : MonoBehaviour
 
     // variables privadas
     private bool start;
+    private bool juego;
     private int nivel;
     [SerializeField] private TMP_Text texto;
     private int numParaSumar;
@@ -35,6 +36,7 @@ public class J2Nivel_1 : MonoBehaviour
     void Start()
     {
         start = false;
+        juego = false;
         nivel = 1;
         botonE.SetActive(true);
         botonO.SetActive(false);
@@ -52,6 +54,7 @@ public class J2Nivel_1 : MonoBehaviour
 
         if (start == true)
         {
+
             botonE.SetActive(false);
             botonO.SetActive(true);
 
@@ -59,13 +62,13 @@ public class J2Nivel_1 : MonoBehaviour
 
             if (numParaSumar == suma)
             {
-                texto.text = "Suma los peces para conseguir el número " + numParaSumar.ToString() + "\n \n" + ConvertirVectorATexto(acuario.vectNumeros, acuario.numPecesIn) + "\n \n" + "CORRECTO  :)";
+                texto.text = "Suma los peces para conseguir el número " + numParaSumar.ToString() + "\n \n" + ConvertirVectorATexto(acuario.vectNumeros, acuario.numPecesIn) + "\n" + "CORRECTO  :)";
                 botonS.SetActive(true);
             }
 
             else if (numParaSumar < suma)
             {
-                texto.text = "Suma los peces para conseguir el número " + numParaSumar.ToString() + "\n \n" + ConvertirVectorATexto(acuario.vectNumeros, acuario.numPecesIn) + "\n \n" + "INCORRECTO  :(";
+                texto.text = "Suma los peces para conseguir el número " + numParaSumar.ToString() + "\n \n" + ConvertirVectorATexto(acuario.vectNumeros, acuario.numPecesIn) + "\n" + "INCORRECTO  :(";
             }
         }
     }
@@ -112,12 +115,13 @@ public class J2Nivel_1 : MonoBehaviour
         setNivel(nivel);
     }
 
+
     //funcion de cambio de niveles & incializacion de niveles
     public void setNivel(int n)
     {
      
-        // creamos un numero aleatorio para el que tenemos que sumar  //       
-        suma = 0;
+        // reiniciamos valores del vector de suma  //       
+        acuario.reiniciar();
 
         // reiniciar todos los objetos
         ObjetosNivel_1.GetComponent<ObjetosNivel>().eliminarObjetosDinamicos();
@@ -142,19 +146,19 @@ public class J2Nivel_1 : MonoBehaviour
                 break;
 
             case 2:
-                numParaSumar = random.Next(1, 101); //numero del 1 al 100
+                numParaSumar = 10 * random.Next(1, 11); //numero del 1 al 100
                 ObjetosNivel_2.GetComponent<ObjetosNivel>().reiniciar();
                 ObjetosNivel_2.SetActive(true);
                 break;
 
             case 3:
-                numParaSumar = random.Next(1, 1001); //numero del 1 al 1000
+                numParaSumar = 100 * random.Next(1, 4); //numero del 1 al 1000
                 ObjetosNivel_3.GetComponent<ObjetosNivel>().reiniciar();
                 ObjetosNivel_3.SetActive(true);
                 break;
 
             case 4:
-                numParaSumar = random.Next(1, 101); //numero del 1 al 100
+                numParaSumar = random.Next(1, 254); //numero del 1 al 100
                 ObjetosNivel_4.GetComponent<ObjetosNivel>().reiniciar();
                 ObjetosNivel_4.SetActive(true);
                 break;

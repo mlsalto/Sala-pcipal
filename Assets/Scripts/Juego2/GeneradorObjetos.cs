@@ -66,12 +66,12 @@ public class GeneradorObjetos : MonoBehaviour
         //Objeto.transform.position = posini;
 
         // asociamos los limites según la posición del pez original cubo de 1 de arista
-        minPosition.x = Objeto.transform.position.x - ancho;
-        minPosition.y = Objeto.transform.position.y - alto;
-        minPosition.z = Objeto.transform.position.z - largo;
-        maxPosition.x = Objeto.transform.position.x + ancho;
-        maxPosition.y = Objeto.transform.position.y + alto;
-        maxPosition.z = Objeto.transform.position.z + largo;
+        minPosition.x = posini.x - ancho;
+        minPosition.y = posini.y - alto;
+        minPosition.z = posini.z - largo;
+        maxPosition.x = posini.x + ancho;
+        maxPosition.y = posini.y + alto;
+        maxPosition.z = posini.z + largo;
 
         //inicializacion prefab
         for (int i = 0; i < nobjetos; i++)

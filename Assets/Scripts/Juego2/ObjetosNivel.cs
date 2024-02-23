@@ -41,6 +41,7 @@ public class ObjetosNivel : MonoBehaviour
             {
                 obj.GetComponent<MovimientoPezCirc>().reiniciar();
             }
+ 
         }
     }
 

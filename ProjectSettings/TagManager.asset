@@ -6,6 +6,8 @@ TagManager:
   tags:
   - 1
   - conjunto
+  - 10
+  - 100
   layers:
   - Default
   - TransparentFX

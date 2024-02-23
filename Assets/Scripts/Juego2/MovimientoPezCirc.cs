@@ -53,6 +53,9 @@ public class MovimientoPezCirc : MonoBehaviour
     {
         // si lo colocamos en su sitio
         pesesito.Placed += ObjetoColocado;
+        // si lo soltamos y no hay anchor alrededor
+        pesesito.Released += ObjetoSoltado;
+
 
         if (pesesito.IsBeingGrabbed == true)
         {
@@ -62,39 +65,33 @@ public class MovimientoPezCirc : MonoBehaviour
 
         else
         {
-            animator.SetBool("isGrabbed", false);
-            animator.SetBool("isWater", true);
+            animator.SetBool("isGrabbed", false);      
 
             if (colocado == false)
             {
                 movimientoNormal();
-            } 
+            }
         }
 
         void ObjetoColocado(object sender, UxrManipulationEventArgs e)
         {
             colocado = true;
         }
+
+        void ObjetoSoltado(object sender, UxrManipulationEventArgs e)
+        {
+            colocado = false;
+        }
     }
 
-    //  si entra algo en el cuadrado //
-    private void OnTriggerEnter(Collider collider)
-    {
-        agua = true;
-    }
-
-    //  si sale algo del cuadrado //
-    private void OnTriggerExit(Collider collider)
-    {
-        agua = false;
-    }
-
+ 
     // funcion de movimiento estandar del pez
     private void movimientoNormal()
     {
         // movimiento dentro del agua
-        if (agua == true)
+        if ( getDentroAgua() == true )
         {
+            animator.SetBool("isWater", true);
             //circulo
             hangle += hspeed * Time.deltaTime;
             vangle += vspeed * Time.deltaTime;
@@ -103,11 +100,16 @@ public class MovimientoPezCirc : MonoBehaviour
             Pez.transform.LookAt(new Vector3(x + (Mathf.Sin(hangle - 25) * radiusx), y, z - radiusz + (Mathf.Cos(hangle - 25) * radiusz)));
         }
 
-        //// movimiento fuera del agua
-        //else {
-        //    animator.SetBool("isWater", true);
-        //    // hacer funcion
-        //}
+
+        else
+        {
+            animator.SetBool("isWater", false);
+            //caida hasta el suelo
+            if (Pez.transform.position.y >= -1.3f)
+            {
+                Pez.transform.position = new Vector3( x, -1.3f, z);
+            }
+        }
     }
 
 
@@ -126,6 +128,22 @@ public class MovimientoPezCirc : MonoBehaviour
 
 
         animator.SetBool("isGrabbed", true);
+    }
+
+    private bool getDentroAgua()
+    {
+        float limitsup_x = 8.2f;
+        float limitinf_x = 1.6f;
+        float limitsup_y = 1.7f;
+        float limitinf_y = -1.7f;
+        float limitsup_z = 21.7f;
+        float limitinf_z = 15f;
+
+       if(Pez.transform.position.x <= limitsup_x && Pez.transform.position.x >= limitinf_x && Pez.transform.position.y <= limitsup_y && Pez.transform.position.y >= limitinf_y && Pez.transform.position.z <= limitsup_z && Pez.transform.position.z >= limitinf_z)
+       {
+            return true;
+       }
+       else { return false; }
     }
 
     // reiniciar valores y todo
