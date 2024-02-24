@@ -7,28 +7,27 @@ using System;
 public class MovimientoPezCirc : MonoBehaviour
 {
     public GameObject Pez;
-    //public UxrGrabbableObjectAnchor frame;
+
     public float hspeed = 0.5f; // radianes/segundo
     public float vspeed = 0.5f; // radianes/segundo
     public float radiusx = 5f;
     public float radiusz = 1.2f;
     public float height = 1f;
+
     private float x; // centro de rotacion x
     private float y; // centro de rotacion y
     private float z; // centro de rotacion z
 
-    //private float xrot; // centro de rotacion x
-    //private float yrot; // centro de rotacion y
-    //private float zrot; // centro de rotacion z
 
     public float hangle;
     private float vangle;
 
     private bool colocado;
     private bool quieto;
+    private bool agua;
     public UxrGrabbableObject pesesito;
     private Animator animator;
-   
+    private Vector3 posini; 
 
     // Start is called before the first frame update
     void Start()
@@ -40,11 +39,13 @@ public class MovimientoPezCirc : MonoBehaviour
         y = Pez.transform.position.y;
         z = Pez.transform.position.z;
 
+        posini = Pez.transform.position;
         // poner ángulo random //problema me lo hace con el banco de peces tmb????
         //System.Random random = new System.Random();
         //hangle = (float)random.NextDouble();
 
         colocado = false;
+        agua = true;
     }
 
     // Update is called once per frame
@@ -52,42 +53,23 @@ public class MovimientoPezCirc : MonoBehaviour
     {
         // si lo colocamos en su sitio
         pesesito.Placed += ObjetoColocado;
+        // si lo soltamos y no hay anchor alrededor
+        pesesito.Released += ObjetoSoltado;
 
-        if (pesesito.IsBeingGrabbed == true )
+
+        if (pesesito.IsBeingGrabbed == true)
         {
-            // cuando lo coges vuelves a pillar los valores del pez :)
-            x = Pez.transform.position.x;
-            y = Pez.transform.position.y;
-            z = Pez.transform.position.z;
+            movimientoEnMano();
 
-            ////animator.Play("Base Layer.Eat", 0, 0); // para la animación
-            //animator.SetBool("isGrabbed", true);
-
-            hangle = Pez.transform.rotation.y;
-            //timegrabbed = Time.deltaTime;
-           
-            animator.SetBool("isGrabbed", true);
-       
         }
 
         else
         {
+            animator.SetBool("isGrabbed", false);      
 
             if (colocado == false)
             {
-                //circulo
-                hangle += hspeed * Time.deltaTime;
-                vangle += vspeed * Time.deltaTime;
-                Pez.transform.position = new Vector3(x + (Mathf.Sin(hangle) * radiusx), y + (Mathf.Sin(vangle) * height), z - radiusz + (Mathf.Cos(hangle) * radiusz)); // a la pocicón del pez le resto el radio para que me de el centro de la circunferencia
-                                                                                                                                       // Pez.transform.forward = new Vector3(x + (Mathf.Sin(angle + 20 ) * radiusx), 0, z + (Mathf.Cos(angle + 20) * radiusz));
-                Pez.transform.LookAt(new Vector3(x + (Mathf.Sin(hangle - 25) * radiusx), y, z - radiusz + (Mathf.Cos(hangle - 25) * radiusz)));
-
-                //animator.Play("Base Layer.Fear", 0, 0);
-                animator.SetBool("isGrabbed", false);
-            }
-            else
-            {
-            animator.SetBool("isGrabbed", false);
+                movimientoNormal();
             }
         }
 
@@ -95,6 +77,86 @@ public class MovimientoPezCirc : MonoBehaviour
         {
             colocado = true;
         }
+
+        void ObjetoSoltado(object sender, UxrManipulationEventArgs e)
+        {
+            colocado = false;
+        }
+    }
+
+ 
+    // funcion de movimiento estandar del pez
+    private void movimientoNormal()
+    {
+        // movimiento dentro del agua
+        if ( getDentroAgua() == true )
+        {
+            animator.SetBool("isWater", true);
+            //circulo
+            hangle += hspeed * Time.deltaTime;
+            vangle += vspeed * Time.deltaTime;
+            Pez.transform.position = new Vector3(x + (Mathf.Sin(hangle) * radiusx), y + (Mathf.Sin(vangle) * height), z - radiusz + (Mathf.Cos(hangle) * radiusz)); // a la pocicón del pez le resto el radio para que me de el centro de la circunferencia
+                                                                                                                                                                    // Pez.transform.forward = new Vector3(x + (Mathf.Sin(angle + 20 ) * radiusx), 0, z + (Mathf.Cos(angle + 20) * radiusz));
+            Pez.transform.LookAt(new Vector3(x + (Mathf.Sin(hangle - 25) * radiusx), y, z - radiusz + (Mathf.Cos(hangle - 25) * radiusz)));
+        }
+
+
+        else
+        {
+            animator.SetBool("isWater", false);
+            //caida hasta el suelo
+            if (Pez.transform.position.y >= -1.3f)
+            {
+                Pez.transform.position = new Vector3( x, -1.3f, z);
+            }
+        }
+    }
+
+
+    // funcion en caso de estar cogidos por el jugador
+    private void movimientoEnMano()
+    {
+        // cuando lo coges vuelves a pillar los valores del pez :)
+        x = Pez.transform.position.x;
+        y = Pez.transform.position.y;
+        z = Pez.transform.position.z;
+
+        ////animator.Play("Base Layer.Eat", 0, 0); // para la animación
+        //animator.SetBool("isGrabbed", true);
+
+        hangle = Pez.transform.rotation.y;
+
+
+        animator.SetBool("isGrabbed", true);
+    }
+
+    private bool getDentroAgua()
+    {
+        float limitsup_x = 8.2f;
+        float limitinf_x = 1.6f;
+        float limitsup_y = 1.7f;
+        float limitinf_y = -1.7f;
+        float limitsup_z = 21.7f;
+        float limitinf_z = 15f;
+
+       if(Pez.transform.position.x <= limitsup_x && Pez.transform.position.x >= limitinf_x && Pez.transform.position.y <= limitsup_y && Pez.transform.position.y >= limitinf_y && Pez.transform.position.z <= limitsup_z && Pez.transform.position.z >= limitinf_z)
+       {
+            return true;
+       }
+       else { return false; }
+    }
+
+    // reiniciar valores y todo
+    public void reiniciar()
+    {
+        colocado = false;
+        agua = true;
+
+        Pez.transform.position = posini;
+
+        x = Pez.transform.position.x;
+        y = Pez.transform.position.y;
+        z = Pez.transform.position.z;
     }
 }
 

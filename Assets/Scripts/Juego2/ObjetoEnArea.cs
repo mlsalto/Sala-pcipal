@@ -8,6 +8,8 @@ public class ObjetoEnArea : MonoBehaviour
 
     public GameObject objetoCentral;
     public BoxCollider objetoCollider;
+
+
     private float ancho;
     private float largo;
     private float alto;
@@ -23,7 +25,7 @@ public class ObjetoEnArea : MonoBehaviour
         // variables para cuentas
         i = 0;
         suma = 0;
-        vectorNum = new int[10];
+        vectorNum = new int[20];
 
         //variables de posicion de objetos
         posicionCentral = objetoCentral.transform.position;
@@ -32,27 +34,16 @@ public class ObjetoEnArea : MonoBehaviour
         alto = objetoCollider.size.z;
     }
 
-    // Funcion de si entra algo en el cuadrado //
+    //  si entra algo en el cuadrado //
     private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("ok ontrigger enter");
-        // Check if the entering object is within the 3D rectangle
-        if (CheckObjectsInsideRectangle(collider.transform.position) == true)
-        {
-            Debug.Log("ok insiderectangle");
-            sumaObjetosArea(true, collider);
-        }
+        sumaObjetosArea(true, collider);
     }
 
-    // Funcion de si sale algo del cuadrado //
+    //  si sale algo del cuadrado //
     private void OnTriggerExit(Collider collider)
-    {
-        Debug.Log("ok ontrigger exit");
-        // Check if the exiting object was inside the 3D rectangle
-        if (CheckObjectsInsideRectangle(collider.transform.position) == false)
-        {
-            sumaObjetosArea(false, collider);
-        }
+    {      
+        sumaObjetosArea(false, collider);
     }
 
     private void sumaObjetosArea(bool isuma, Collider collider)
@@ -60,7 +51,6 @@ public class ObjetoEnArea : MonoBehaviour
         // si es suma
         if(isuma == true) 
         {
-            Debug.Log("suma");
 
             //** FUNCION DE SUMA **//
 
@@ -79,7 +69,7 @@ public class ObjetoEnArea : MonoBehaviour
         // si es resta
         else if (isuma == false)
         {
-            Debug.Log("resta");
+
             //** FUNCION DE RESTA **//
 
             int a = 0;
@@ -88,23 +78,35 @@ public class ObjetoEnArea : MonoBehaviour
             {
                 if (vectorNum[a] == int.Parse(collider.gameObject.tag))
                 {
-                    Debug.Log("num encontrado");
-                    // Retroceder los valores en la posición dada
-                    for (int b = a; b <= i - 2; b++)
+                    // en el caso de que solo haya un numero
+                    if (a == 0 && i == 1)
                     {
-                        vectorNum[b] = vectorNum[b + 1];
-                    }
-            
-
-                    // hacemos los calculos quitando el numero que hemos quitado
-                    i--;
-
-                    for (int c = 0; c <= i; c++)
-                    {
-                        suma += vectorNum[c];
+                        i--;
+                        suma = 0;
+                        vectorNum[a] = 0;
+                        return;
                     }
 
-                    return;
+                    //en el resto de casos
+                    else {
+                        Debug.Log("num encontrado");
+                        // Retroceder los valores en la posición dada
+                        for (int b = a; b <= i - 2; b++)
+                        {
+                            vectorNum[b] = vectorNum[b + 1];
+                        }
+
+
+                        // hacemos los calculos quitando el numero que hemos quitado
+                        i--;
+
+                        for (int c = 0; c <= i; c++)
+                        {
+                            suma += vectorNum[c];
+                        }
+
+                        return;
+                    }
 
                 }
             }
@@ -114,23 +116,23 @@ public class ObjetoEnArea : MonoBehaviour
 
     bool CheckObjectsInsideRectangle(Vector3 position)
     {
-        float medioAncho = ancho / 2f;
-        float medioLargo = largo / 2f;
-        float medioAlto = alto / 2f;
-
         // distancia entre el objeto central y el collider que entra/sale
         float deltaX = Mathf.Abs(position.x - posicionCentral.x);
         float deltaY = Mathf.Abs(position.y - posicionCentral.y);
         float deltaZ = Mathf.Abs(position.z - posicionCentral.z);
 
-        Debug.Log(" ( " + medioAncho + " , " + medioLargo + " , " + medioAlto + " ) " + " ( " + deltaX + " , " + deltaY + " , " + deltaZ + " ) ");
-
-        if (deltaX <= medioAncho && deltaY <= medioLargo && deltaZ <= medioAlto) {
+        if (deltaX <= ancho && deltaY <= largo && deltaZ <= alto) {
             return true;
         }
         else return false;
     }
 
+    public void reiniciar()
+    {
+        i = 0;
+        suma = 0;
+        vectorNum = new int[20];
+    }
 
     public int[] vectNumeros
     {

@@ -4,14 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Cajapiruletas
-  - Cajacupcake
-  - Piruleta
-  - Cupcake
-  - Cajagalleta
-  - Dona
-  - Galleta
-  - Musica
+  - 1
+  - conjunto
+  - 10
+  - 100
   layers:
   - Default
   - TransparentFX
