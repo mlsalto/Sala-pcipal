@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Menus : MonoBehaviour
 {
@@ -48,6 +49,21 @@ public class Menus : MonoBehaviour
 
 
     //funcion sala principal
+
+    public void setSalaPrincipal()
+    {
+        StartCoroutine(LoadYourAsyncScene());
+    }
+
+    IEnumerator LoadYourAsyncScene()
+    {
+        AsyncOperation asyncLoad1 = SceneManager.LoadSceneAsync("SalaPcipal");
+
+        while (!asyncLoad1.isDone)
+        {
+            yield return null;
+        }
+    }
 
     //función continuar nivel
     public void setJuego()
