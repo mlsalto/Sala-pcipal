@@ -25,6 +25,7 @@ public class MovimientoPezCirc : MonoBehaviour
     private bool colocado;
     private bool quieto;
     private bool agua;
+    private bool acuario;
     public UxrGrabbableObject pesesito;
     private Animator animator;
     private Vector3 posini; 
@@ -46,6 +47,7 @@ public class MovimientoPezCirc : MonoBehaviour
 
         colocado = false;
         agua = true;
+        acuario = false;
     }
 
     // Update is called once per frame
@@ -55,6 +57,7 @@ public class MovimientoPezCirc : MonoBehaviour
         pesesito.Placed += ObjetoColocado;
         // si lo soltamos y no hay anchor alrededor
         pesesito.Released += ObjetoSoltado;
+        pesesito.Placing += ObjetoColocando;
 
 
         if (pesesito.IsBeingGrabbed == true)
@@ -71,6 +74,10 @@ public class MovimientoPezCirc : MonoBehaviour
             {
                 movimientoNormal();
             }
+            else if(acuario == true || colocado == true)
+            {
+                noMovimiento();
+            }
         }
 
         void ObjetoColocado(object sender, UxrManipulationEventArgs e)
@@ -81,6 +88,10 @@ public class MovimientoPezCirc : MonoBehaviour
         void ObjetoSoltado(object sender, UxrManipulationEventArgs e)
         {
             colocado = false;
+        }
+        void ObjetoColocando(object sender, UxrManipulationEventArgs e)
+        {
+            acuario = true;
         }
     }
 
@@ -98,22 +109,31 @@ public class MovimientoPezCirc : MonoBehaviour
             Pez.transform.position = new Vector3(x + (Mathf.Sin(hangle) * radiusx), y + (Mathf.Sin(vangle) * height), z - radiusz + (Mathf.Cos(hangle) * radiusz)); // a la pocicón del pez le resto el radio para que me de el centro de la circunferencia
                                                                                                                                                                     // Pez.transform.forward = new Vector3(x + (Mathf.Sin(angle + 20 ) * radiusx), 0, z + (Mathf.Cos(angle + 20) * radiusz));
             Pez.transform.LookAt(new Vector3(x + (Mathf.Sin(hangle - 25) * radiusx), y, z - radiusz + (Mathf.Cos(hangle - 25) * radiusz)));
+
+            acuario = false;
         }
 
 
         else
-        {
-            animator.SetBool("isWater", false);
-            //caida hasta el suelo
-            if (Pez.transform.position.y >= -1.3f)
-            {
-                Pez.transform.position = new Vector3( x, -1.3f, z);
-            }
+        {          
+              animator.SetBool("isWater", false);
+              //caida hasta el suelo
+              if (Pez.transform.position.y >= -1.3f)
+              {
+                     Pez.transform.position = new Vector3(x, -1.3f, z);
+              }
+             acuario = false;
+
         }
     }
 
+    private void noMovimiento()
+    {
+        Pez.transform.position = new Vector3(x, y, z);
+    }
 
-    // funcion en caso de estar cogidos por el jugador
+
+        // funcion en caso de estar cogidos por el jugador
     private void movimientoEnMano()
     {
         // cuando lo coges vuelves a pillar los valores del pez :)
@@ -125,9 +145,10 @@ public class MovimientoPezCirc : MonoBehaviour
         //animator.SetBool("isGrabbed", true);
 
         hangle = Pez.transform.rotation.y;
-
+        
 
         animator.SetBool("isGrabbed", true);
+        acuario = false;
     }
 
     private bool getDentroAgua()

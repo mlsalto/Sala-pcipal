@@ -7121,8 +7121,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 286646427}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.222, y: 0.005, z: 0.299}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.222, y: 0.005, z: 0.523}
+  m_LocalScale: {x: 1, y: 1, z: 2.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 718158032}
@@ -25291,7 +25291,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864795151}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.003, y: -0.07, z: 0.106}
+  m_LocalPosition: {x: -0.003, y: 0.006, z: 0.106}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25311,10 +25311,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08d0d27ac1e6234898b5c09a625f04b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nobjetos: 10
+  nobjetos: 20
   Objeto: {fileID: 1137812718}
-  ancho: 1
-  alto: 0.3
+  ancho: 1.9
+  alto: 0.17
   largo: 0.4
 --- !u!1 &869845680
 GameObject:
@@ -26646,8 +26646,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 920251902}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.22161663, y: -0.0034413338, z: 0.29618168}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.222, y: -0.0034413338, z: 0.517}
+  m_LocalScale: {x: 1, y: 1, z: 2.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1165050268}
@@ -32314,7 +32314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1137812718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.012, y: 0, z: 0.01}
+  m_LocalPosition: {x: 0.012, y: 0.045, z: 0.01}
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -32337,7 +32337,7 @@ MonoBehaviour:
   - Herring
   - Taipan
   - Squid
-  _maxPlaceDistance: 1.2
+  _maxPlaceDistance: 1
   _alignTransformUseSelf: 1
   _alignTransform: {fileID: 0}
   _dropProximityTransformUseSelf: 1
@@ -32801,7 +32801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08d0d27ac1e6234898b5c09a625f04b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nobjetos: 5
+  nobjetos: 11
   Objeto: {fileID: 78255060}
   ancho: 0.8
   alto: 0.01
@@ -43880,8 +43880,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.6300192, y: 0.5689558, z: 1.0804636}
-  m_Center: {x: 0.016910382, y: 0.045351505, z: 0.11473472}
+  m_Size: {x: 0.6300192, y: 0.5689558, z: 2.3088224}
+  m_Center: {x: 0.016910383, y: 0.045351505, z: 0.11772727}
 --- !u!114 &1568923158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58111,7 +58111,7 @@ Transform:
   m_GameObject: {fileID: 2095558469}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.24000001, y: -5.95, z: 0.10999966}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 2.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 946359734}
