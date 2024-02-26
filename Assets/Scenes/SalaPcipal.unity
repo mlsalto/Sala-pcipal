@@ -10574,6 +10574,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 768821979485528449, guid: fcc0ba11d216ad94aa9e7dfca419e0bb, type: 3}
+      propertyPath: _invisible
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 768821979485528449, guid: fcc0ba11d216ad94aa9e7dfca419e0bb, type: 3}
+      propertyPath: _rayLength
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 1509765901899295881, guid: fcc0ba11d216ad94aa9e7dfca419e0bb, type: 3}
       propertyPath: conversationEvents.onConversationEnd.m_PersistentCalls.m_Calls.Array.size
       value: 0
@@ -10581,6 +10589,14 @@ PrefabInstance:
     - target: {fileID: 1509765901899295881, guid: fcc0ba11d216ad94aa9e7dfca419e0bb, type: 3}
       propertyPath: conversationEvents.onConversationStart.m_PersistentCalls.m_Calls.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222898634100753341, guid: fcc0ba11d216ad94aa9e7dfca419e0bb, type: 3}
+      propertyPath: _handSide
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222898634100753341, guid: fcc0ba11d216ad94aa9e7dfca419e0bb, type: 3}
+      propertyPath: _rayLength
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 3778048443224301322, guid: fcc0ba11d216ad94aa9e7dfca419e0bb, type: 3}
       propertyPath: m_IsActive
