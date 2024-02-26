@@ -63,7 +63,9 @@ public class J2Nivel_1 : MonoBehaviour
             if (numParaSumar == suma)
             {
                 texto.text = "Suma los peces para conseguir el número " + numParaSumar.ToString() + "\n \n" + ConvertirVectorATexto(acuario.vectNumeros, acuario.numPecesIn) + "\n" + "CORRECTO  :)";
+                if (nivel != 4) { 
                 botonS.SetActive(true);
+                }
             }
 
             else if (numParaSumar < suma)
@@ -111,7 +113,11 @@ public class J2Nivel_1 : MonoBehaviour
     public void siguienteNivel()
     {
         botonS.SetActive(false);
-        nivel++;
+        if(nivel == 4)
+        {
+            nivel = 1;
+        }
+        else nivel++;
         setNivel(nivel);
     }
 
@@ -119,7 +125,8 @@ public class J2Nivel_1 : MonoBehaviour
     //funcion de cambio de niveles & incializacion de niveles
     public void setNivel(int n)
     {
-     
+        nivel = n;
+
         // reiniciamos valores del vector de suma  //       
         acuario.reiniciar();
 
