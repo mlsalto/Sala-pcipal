@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 guid: 98a6d98ed6ebe3e469db236e06203668
 folderAsset: yes
@@ -11,6 +12,12 @@ timeCreated: 1549938752
 licenseType: Store
 DefaultImporter:
 >>>>>>> pruebas-lisa3
+=======
+guid: 919b1a28afdb1a3419e9e12e5e2a426a
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+>>>>>>> Stashed changes
   userData: 
   assetBundleName: 
   assetBundleVariant: 
