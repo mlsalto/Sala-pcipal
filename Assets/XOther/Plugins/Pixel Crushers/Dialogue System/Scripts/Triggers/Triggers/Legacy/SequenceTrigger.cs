@@ -67,12 +67,12 @@ namespace PixelCrushers.DialogueSystem
 
         public void OnCollisionEnter(Collision collision)
         {
-            if (enabled && (trigger == DialogueTriggerEvent.OnCollisionEnter)) TryStartSequence(collision.collider.transform, collision.collider.transform);
+            if (enabled && (trigger == DialogueTriggerEvent.OnCollisionEnter)) TryStartSequence(collision.GetComponent<Collider>().transform, collision.GetComponent<Collider>().transform);
         }
 
         public void OnCollisionExit(Collision collision)
         {
-            if (enabled && (trigger == DialogueTriggerEvent.OnTriggerExit)) TryStartSequence(collision.collider.transform, collision.collider.transform);
+            if (enabled && (trigger == DialogueTriggerEvent.OnTriggerExit)) TryStartSequence(collision.GetComponent<Collider>().transform, collision.GetComponent<Collider>().transform);
         }
 
 #if USE_PHYSICS2D || !UNITY_2018_1_OR_NEWER

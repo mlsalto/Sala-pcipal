@@ -635,12 +635,12 @@ namespace PixelCrushers.DialogueSystem
 
         public void OnCollisionEnter(Collision collision)
         {
-            if (enabled && (trigger == DialogueSystemTriggerEvent.OnCollisionEnter)) TryStart(collision.collider.transform);
+            if (enabled && (trigger == DialogueSystemTriggerEvent.OnCollisionEnter)) TryStart(collision.GetComponent<Collider>().transform);
         }
 
         public void OnCollisionExit(Collision collision)
         {
-            if (enabled && (trigger == DialogueSystemTriggerEvent.OnTriggerExit)) TryStart(collision.collider.transform);
+            if (enabled && (trigger == DialogueSystemTriggerEvent.OnTriggerExit)) TryStart(collision.GetComponent<Collider>().transform);
         }
 
         protected bool listenForOnDestroy = false;
