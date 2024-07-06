@@ -6,7 +6,7 @@ using TMPro;
 using System.Text;
 
 
-//***   EN EL NIVEL 1 SÓLO SE HARÁN SUMAS DE 1 EN 1 HASTA EL NÚMERO 10   ***//
+//***   EN EL NIVEL 1 SOLO SE HARAN SUMAS DE 1 EN 1 HASTA EL NUMERO 10   ***//
 
 public class J2Nivel_1 : MonoBehaviour
 {
@@ -41,7 +41,7 @@ public class J2Nivel_1 : MonoBehaviour
         botonE.SetActive(true);
         botonO.SetActive(false);
         botonS.SetActive(false);
-        texto.text = "El mar se está quedando sin peces por la contaminación. \n ¡¡¡¡ Ayudame a repoblarlos sumando !!!!";
+        texto.text = "El mar se esta quedando sin peces por la contaminacion. \n Ayudame a repoblarlos sumando";
 
         random = new System.Random();
     }
@@ -49,7 +49,7 @@ public class J2Nivel_1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //IF LE DAN A OK EN EL MENÚ ANTERIOR HAZ LO SIGUIENTE:
+        //IF LE DAN A OK EN EL MENU ANTERIOR HAZ LO SIGUIENTE:
         //El numero del nivel 1 es de 1-10, nivel 2 10-99, nivel 3 99-999, (solo con dec, cent, uni) 
 
         if (start == true)
@@ -58,11 +58,11 @@ public class J2Nivel_1 : MonoBehaviour
             botonE.SetActive(false);
             botonO.SetActive(true);
 
-            texto.text = "Suma los peces para conseguir el número " + numParaSumar.ToString() + "\n \n" + ConvertirVectorATexto(acuario.vectNumeros, acuario.numPecesIn);
+            texto.text = "Suma los peces para conseguir el numero " + numParaSumar.ToString() + "\n \n" + ConvertirVectorATexto(acuario.vectNumeros, acuario.numPecesIn);
 
             if (numParaSumar == suma)
             {
-                texto.text = "Suma los peces para conseguir el número " + numParaSumar.ToString() + "\n \n" + ConvertirVectorATexto(acuario.vectNumeros, acuario.numPecesIn) + "\n" + "CORRECTO  :)";
+                texto.text = "Suma los peces para conseguir el numero " + numParaSumar.ToString() + "\n \n" + ConvertirVectorATexto(acuario.vectNumeros, acuario.numPecesIn) + "\n" + "CORRECTO";
                 if (nivel != 4) { 
                 botonS.SetActive(true);
                 }
@@ -70,7 +70,7 @@ public class J2Nivel_1 : MonoBehaviour
 
             else if (numParaSumar < suma)
             {
-                texto.text = "Suma los peces para conseguir el número " + numParaSumar.ToString() + "\n \n" + ConvertirVectorATexto(acuario.vectNumeros, acuario.numPecesIn) + "\n" + "INCORRECTO  :(";
+                texto.text = "Suma los peces para conseguir el numero " + numParaSumar.ToString() + "\n \n" + ConvertirVectorATexto(acuario.vectNumeros, acuario.numPecesIn) + "\n" + "INCORRECTO";
             }
         }
     }
@@ -143,7 +143,7 @@ public class J2Nivel_1 : MonoBehaviour
         ObjetosNivel_3.SetActive(false);
         ObjetosNivel_4.SetActive(false);
 
-        // encender el objeto correspondiente y generar el número
+        // encender el objeto correspondiente y generar el numero
         switch (n)
         {
             case 1:

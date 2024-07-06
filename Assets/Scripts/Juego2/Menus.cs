@@ -26,7 +26,7 @@ public class Menus : MonoBehaviour
     }
 
 
-    //funcion que enseñe el meni de opciones
+    //funcion que ensene el meni de opciones
     public void setMenuOpciones()
     {
         menuOpciones.SetActive(true);
@@ -37,7 +37,7 @@ public class Menus : MonoBehaviour
     }
 
 
-    //funcion que enseñe menu niveles
+    //funcion que ensene menu niveles
     public void setMenuNiveles()
     {
         menuNiveles.SetActive(true);
@@ -65,7 +65,7 @@ public class Menus : MonoBehaviour
         }
     }
 
-    //función continuar nivel
+    //funcion continuar nivel
     public void setJuego()
     {
         juego.SetActive(true);

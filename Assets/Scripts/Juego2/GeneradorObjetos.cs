@@ -26,7 +26,7 @@ public class GeneradorObjetos : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //datos del pez central (alrededor de él se generan el resto de peces)
+        //datos del pez central (alrededor de el se generan el resto de peces)
         x = Objeto.transform.position.x;
         y = Objeto.transform.position.y;
         z = Objeto.transform.position.z;
@@ -65,7 +65,7 @@ public class GeneradorObjetos : MonoBehaviour
     {
         //Objeto.transform.position = posini;
 
-        // asociamos los limites según la posición del pez original cubo de 1 de arista
+        // asociamos los limites segun la posicion del pez original cubo de 1 de arista
         minPosition.x = posini.x - ancho;
         minPosition.y = posini.y - alto;
         minPosition.z = posini.z - largo;

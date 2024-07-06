@@ -90,7 +90,7 @@ public class ObjetoEnArea : MonoBehaviour
                     //en el resto de casos
                     else {
                         Debug.Log("num encontrado");
-                        // Retroceder los valores en la posición dada
+                        // Retroceder los valores en la posicion dada
                         for (int b = a; b <= i - 2; b++)
                         {
                             vectorNum[b] = vectorNum[b + 1];

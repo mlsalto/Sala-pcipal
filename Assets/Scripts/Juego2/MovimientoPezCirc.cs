@@ -33,7 +33,7 @@ public class MovimientoPezCirc : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>(); // se supone que obtiene el objeto en el que está
+        animator = GetComponent<Animator>(); // se supone que obtiene el objeto en el que esta
         // var pesesito = new UxrManipulationEventArgs();
 
         x = Pez.transform.position.x;
@@ -41,7 +41,7 @@ public class MovimientoPezCirc : MonoBehaviour
         z = Pez.transform.position.z;
 
         posini = Pez.transform.position;
-        // poner ángulo random //problema me lo hace con el banco de peces tmb????
+        // poner angulo random //problema me lo hace con el banco de peces tmb????
         //System.Random random = new System.Random();
         //hangle = (float)random.NextDouble();
 
@@ -106,8 +106,8 @@ public class MovimientoPezCirc : MonoBehaviour
             //circulo
             hangle += hspeed * Time.deltaTime;
             vangle += vspeed * Time.deltaTime;
-            Pez.transform.position = new Vector3(x + (Mathf.Sin(hangle) * radiusx), y + (Mathf.Sin(vangle) * height), z - radiusz + (Mathf.Cos(hangle) * radiusz)); // a la pocicón del pez le resto el radio para que me de el centro de la circunferencia
-                                                                                                                                                                    // Pez.transform.forward = new Vector3(x + (Mathf.Sin(angle + 20 ) * radiusx), 0, z + (Mathf.Cos(angle + 20) * radiusz));
+            Pez.transform.position = new Vector3(x + (Mathf.Sin(hangle) * radiusx), y + (Mathf.Sin(vangle) * height), z - radiusz + (Mathf.Cos(hangle) * radiusz)); // a la pocicion del pez le resto el radio para que me de el centro de la circunferencia
+            // Pez.transform.forward = new Vector3(x + (Mathf.Sin(angle + 20 ) * radiusx), 0, z + (Mathf.Cos(angle + 20) * radiusz));
             Pez.transform.LookAt(new Vector3(x + (Mathf.Sin(hangle - 25) * radiusx), y, z - radiusz + (Mathf.Cos(hangle - 25) * radiusz)));
 
             acuario = false;
@@ -141,7 +141,7 @@ public class MovimientoPezCirc : MonoBehaviour
         y = Pez.transform.position.y;
         z = Pez.transform.position.z;
 
-        ////animator.Play("Base Layer.Eat", 0, 0); // para la animación
+        ////animator.Play("Base Layer.Eat", 0, 0); // para la animacion
         //animator.SetBool("isGrabbed", true);
 
         hangle = Pez.transform.rotation.y;
