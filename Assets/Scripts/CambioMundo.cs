@@ -41,8 +41,8 @@ public class CambioMundo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        cilindro1.Placed += ObjetoColocado1; // etiqueta de evento se usa así jeje
-        cilindro2.Placed += ObjetoColocado2; // etiqueta de evento se usa así jeje
+        cilindro1.Placed += ObjetoColocado1; // etiqueta de evento se usa asi jeje
+        cilindro2.Placed += ObjetoColocado2; // etiqueta de evento se usa asi jeje
 
         if (colocado1 == true)
         {
