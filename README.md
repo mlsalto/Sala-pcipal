@@ -1,14 +1,18 @@
 # Sala-pcipal 
- Este repositorio está dedicado a un proyecto para el desarrollo de un entorno virtual 3D y se implemente en unas gafas de realidad virtual con el fin de crear un videojuego.
+ Este repositorio está dedicado para el proyecto GAMMAT, en el que se desarrolla un juego educativo en realidad virtual.
 
 ## Software:
 - Unity: versión 2021.3.20f1
 - Oculus Integration 57.0.1.
-- Visual Studio Community
+- Meta Quest Developer Hub 
+- Visual Studio Community 2019
 
 ## Hardare:
 - Gafas Meta Quest 2.
-  
+
+## Flujo del proceso.
+  ![Diagramas de flujo - Juego](https://github.com/user-attachments/assets/30202e18-a0bc-4a2a-94bf-be8df8b418eb)
+
 ## Paquetes de Unity
 - UltimateXR. Link: https://assetstore.unity.com/packages/tools/integration/ultimatexr-virtual-reality-framework-and-toolkit-236782
 - LowPoly SciFi. Link: https://assetstore.unity.com/packages/3d/environments/sci-fi/free-lowpoly-scifi-110070
