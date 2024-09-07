@@ -10,7 +10,7 @@
 ## Hardare:
 - Gafas Meta Quest 2.
 
-## Flujo del proceso.
+## Flujo del Juego 2 - Cápsula azul
   ![Diagramas de flujo - Juego](https://github.com/user-attachments/assets/30202e18-a0bc-4a2a-94bf-be8df8b418eb)
 
 ## Paquetes de Unity
