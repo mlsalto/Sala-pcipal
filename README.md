@@ -11,7 +11,7 @@
 - Gafas Meta Quest 2.
 
 ## APK:
-Esto sirve para poder ejecutar el proyecto en unas Gafas Meta Quest 2 directamente, sin la necesidad de descargarse el repositorio y las demás aplicaciones.
+Se incluye en el repositorio, sirve para poder ejecutar el proyecto en unas Gafas Meta Quest 2 directamente, sin la necesidad de descargarse el repositorio y las demás aplicaciones.
 
 ## Flujo del Juego 2 - Cápsula azul
   ![Diagramas de flujo - Juego](https://github.com/user-attachments/assets/30202e18-a0bc-4a2a-94bf-be8df8b418eb)
